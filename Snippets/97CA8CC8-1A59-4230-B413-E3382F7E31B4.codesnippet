@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t51</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let query = DeviceQuery(type: DeviceQuery.EntityType.Zone, id: selectedZone.id)
+        DeviceRequest.Connect(query) { (error) -&gt; Void in
+            // Check for success
+            guard error == nil else {
+                print("Encountered error connecting to Zone: \(self.selectedZone.id)")
+                return
+            }
+
+            DeviceRequest.Disconnect(query) { (error) -&gt; Void in
+                // Check for success
+                guard error == nil else {
+                    print("Encountered error connecting to Zone: \(self.selectedZone.id)")
+                    return
+                }
+            }.execute()
+        }.execute()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>97CA8CC8-1A59-4230-B413-E3382F7E31B4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Zone Connect / Disconnect</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 5.1</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

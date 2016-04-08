@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t32</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let zone = zones?[indexPath.item] {
+            self.performSegueWithIdentifier(Constants.MomentSegue, sender: zone)
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FBE0AFC3-DCB7-4E3F-82D7-1051EDB01D76</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Collection View Data Source Fillers (didSelect)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 3.2</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

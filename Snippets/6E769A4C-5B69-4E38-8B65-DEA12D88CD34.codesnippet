@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t11</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>SessionRequest.Login(email: email, password: password, rememberMe: false) { (user, error) -&gt; Void in
+            guard error == nil else {
+                self.errorLabel.text = "Login Error"
+                self.animateLogo = false
+                print("Encountered error: \(error)")
+                sender.enabled = true
+                return
+            }
+            guard user != nil else {
+                self.errorLabel.text = "Invalid User"
+                self.animateLogo = false
+                sender.enabled = true
+                return
+            }
+            self.errorLabel.text = ""
+            self.animateLogoAndPerformSegue(sender)
+        }.execute()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6E769A4C-5B69-4E38-8B65-DEA12D88CD34</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Sample Login Request</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 1.1</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

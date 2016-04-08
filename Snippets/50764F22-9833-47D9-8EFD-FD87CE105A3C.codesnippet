@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t33</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let zone = sender as? Zone {
+            let zoneViewController = segue.destinationViewController as! ZoneViewController
+            zoneViewController.selectedZone = zone
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>50764F22-9833-47D9-8EFD-FD87CE105A3C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Prepare for Segue (ZoneViewController)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 3.3</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

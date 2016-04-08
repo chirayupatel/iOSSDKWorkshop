@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t24</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let zone = zones?[indexPath.row] {
+            cell.zoneNameLabel.text = zone.name.value
+            cell.zoneDescriptionLabel.text = zone.zoneDescription.value
+            zone.image.loadImage(._100, locale: nil) { (image, error) -&gt; Void in
+                guard error == nil else {
+                    print("Encountered image loading error: \(error!)")
+                    return
+                }
+                UIView.transitionWithView(cell.zoneImageView, duration: 0.2, options: .TransitionCrossDissolve, animations: { () -&gt; Void in
+                    cell.zoneImageView.image = image.loadedImage()
+                }, completion: nil)
+            }
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>74C413B4-AB01-45B8-A599-A5B45ACC2D6F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Collection View Data Source Fillers (cellForItem)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 2.4</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

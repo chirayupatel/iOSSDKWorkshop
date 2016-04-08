@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t00</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>Session.sharedInstance.configuration.APIKey = "&lt;#API KEY#&gt;"
+        
+        print("Server: \(Session.sharedInstance.configuration.serverURL)")
+        
+        Session.sharedInstance.configuration.preferredLocales = [
+            NSLocale(localeIdentifier: "en_US"),
+            NSLocale(localeIdentifier: "fr_FR")
+        ]</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>28D2B026-0C1D-48BD-BB97-74ED0C3021F1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>API Key Sample</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 0.0</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

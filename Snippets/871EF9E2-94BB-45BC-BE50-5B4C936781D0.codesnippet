@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t78</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let zoneEnteredTopic = PushMessage.CompleteNotificationType(.MomentInstance, action: .ZoneEntered, rawAction: selectedZone.id)
+        let zoneEnteredToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
+            self.zoneEnteredMessage(notification.userInfo)
+        }
+        tokens.append(zoneEnteredToken)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>871EF9E2-94BB-45BC-BE50-5B4C936781D0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Register for Zone Entered Push Notification (by ID)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.8</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

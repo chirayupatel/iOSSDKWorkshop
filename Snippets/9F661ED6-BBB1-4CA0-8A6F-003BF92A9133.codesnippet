@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t34</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let selectedZone = selectedZone {
+            self.title = selectedZone.name.value ?? Constants.DefaultTitle
+            self.zoneImageView.image = selectedZone.image.loadedImage()
+
+            MomentRequest.GetZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -&gt; Void in
+                guard error == nil else {
+                    print("Encountered error: \(error!)")
+                    return
+                }
+                self.moments = moments
+                self.momentsCollectionView.reloadData()
+            }.execute()
+        } else {
+            self.title = Constants.DefaultTitle
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9F661ED6-BBB1-4CA0-8A6F-003BF92A9133</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Sample Moment Request</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 3.4</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

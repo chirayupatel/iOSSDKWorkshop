@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t45x</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func loadMomentData() {
+        let urlString: String
+        if moment.packageName == "com.flybits.moments.text" {
+            urlString = "\(moment.launchURL)/TextBits"
+        } else if moment.packageName == "com.flybits.moments.website" {
+            urlString = "\(moment.launchURL)/WebsiteBits?alllocales=true"
+        } else if moment.packageName == "com.flybits.moments.jsonbuilder" {
+            urlString = "\(moment.launchURL)/KeyValuePairs/AsMetadata"
+        } else {
+            urlString = ""
+        }
+        
+        let request = NSURLRequest(URL: NSURL(string: urlString)!)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -&gt; Void in
+            guard let data = data else {
+                return
+            }
+            if let json = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String:AnyObject] where json != nil {
+                
+                // Accessing metadata in Swift:
+                // moment.metadata ...
+                
+                if self.moment.packageName == "com.flybits.moments.text" {
+                    self.momentWebView.hidden = true
+                    self.momentTextView.hidden = false
+                    let textMomentData = TextMomentData(dictionary: json!)!
+                    dispatch_async(dispatch_get_main_queue()) { () -&gt; Void in
+                        self.momentTextView.text = textMomentData.texts["en"]?.summary ?? "No data."
+                    }
+                } else if self.moment.packageName == "com.flybits.moments.website" {
+                    self.momentWebView.hidden = false
+                    self.momentTextView.hidden = true
+                    let webMomentData = WebMomentData(dictionary: json!)!
+                    if let websiteURL = webMomentData.websites.first?.URL {
+                        let webRequest = NSURLRequest(URL: websiteURL)
+                        self.momentWebView.loadRequest(webRequest)
+                    }
+                } else if self.moment.packageName == "com.flybits.moments.jsonbuilder" {
+                    self.momentWebView.hidden = true
+                    self.momentTextView.hidden = false
+                    dispatch_async(dispatch_get_main_queue()) { () -&gt; Void in
+                        self.momentTextView.text = json!.debugDescription
+                    }
+                }
+            }
+        }
+        task.resume()
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6E144F91-4193-4191-BC09-8789FA818041</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Additional Moment Examples</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.5.x</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

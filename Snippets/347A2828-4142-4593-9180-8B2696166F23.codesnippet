@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t45</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func loadMomentData() {
+        let urlString = "\(moment.launchURL)/WebsiteBits?alllocales=true"
+        let request = NSURLRequest(URL: NSURL(string: urlString)!)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -&gt; Void in
+            guard let data = data else {
+                return
+            }
+            if let json = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String:NSDictionary] where json != nil {
+                let webMomentData = WebMomentData(dictionary: json!)!
+                if let websiteURL = webMomentData.websites.first?.URL {
+                    let webRequest = NSURLRequest(URL: websiteURL)
+                    self.momentWebView.loadRequest(webRequest)
+                }
+            }
+        }
+        task.resume()
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>347A2828-4142-4593-9180-8B2696166F23</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Sample Moment Data Request</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.5</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

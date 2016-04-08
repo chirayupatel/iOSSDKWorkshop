@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t65</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@IBAction func onFilterAction(sender: UIBarButtonItem) {
+        guard let tags = tags else {
+            return // Nothing to show
+        }
+
+        let alertController = UIAlertController(title: nil, message: "Filter By Tag", preferredStyle: .ActionSheet)
+        alertController.modalPresentationStyle = .Popover
+        alertController.popoverPresentationController?.barButtonItem = sender
+
+        
+        for tag in tags {
+            alertController.addAction(UIAlertAction(title: tag.value?.defaultValue ?? "Tag \(tag.id)", style: .Default) { (action) -&gt; Void in
+                self.selectedTagFilter = tag.zoneMomentInstanceIDs
+                self.doMomentQuery()
+            })
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) -&gt; Void in
+            // Do nothing
+        })
+
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2D794C08-F8A5-46BE-80A9-A116BE5BFB82</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>onFilterAction IBAction</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 6.5</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		495FAC3C1C4D8DD2003C70CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC3B1C4D8DD2003C70CC /* AppDelegate.swift */; };
+		495FAC411C4D8DD2003C70CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495FAC3F1C4D8DD2003C70CC /* Main.storyboard */; };
+		495FAC431C4D8DD2003C70CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495FAC421C4D8DD2003C70CC /* Assets.xcassets */; };
+		495FAC461C4D8DD2003C70CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495FAC441C4D8DD2003C70CC /* LaunchScreen.storyboard */; };
+		495FAC621C4D8E56003C70CC /* MomentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC4E1C4D8E56003C70CC /* MomentCollectionViewCell.swift */; };
+		495FAC631C4D8E56003C70CC /* ZoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC4F1C4D8E56003C70CC /* ZoneCollectionViewCell.swift */; };
+		495FAC671C4D8E56003C70CC /* PointOfInterestMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC551C4D8E56003C70CC /* PointOfInterestMoment.swift */; };
+		495FAC681C4D8E56003C70CC /* SpeedDialMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC561C4D8E56003C70CC /* SpeedDialMoment.swift */; };
+		495FAC691C4D8E56003C70CC /* TextMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC571C4D8E56003C70CC /* TextMoment.swift */; };
+		495FAC6A1C4D8E56003C70CC /* UsersMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC581C4D8E56003C70CC /* UsersMoment.swift */; };
+		495FAC6B1C4D8E56003C70CC /* WebMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC591C4D8E56003C70CC /* WebMoment.swift */; };
+		495FAC6C1C4D8E56003C70CC /* YoutubeMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC5A1C4D8E56003C70CC /* YoutubeMoment.swift */; };
+		495FAC6D1C4D8E56003C70CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC5C1C4D8E56003C70CC /* Extensions.swift */; };
+		495FAC6E1C4D8E56003C70CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC5E1C4D8E56003C70CC /* LoginViewController.swift */; };
+		495FAC6F1C4D8E56003C70CC /* MomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC5F1C4D8E56003C70CC /* MomentViewController.swift */; };
+		495FAC701C4D8E56003C70CC /* ZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC601C4D8E56003C70CC /* ZoneListViewController.swift */; };
+		495FAC711C4D8E56003C70CC /* ZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC611C4D8E56003C70CC /* ZoneViewController.swift */; };
+		495FAC791C4D8EB9003C70CC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC511C4D8E56003C70CC /* Alamofire.framework */; };
+		495FAC7A1C4D8EB9003C70CC /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC511C4D8E56003C70CC /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		495FAC7B1C4D8EB9003C70CC /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */; };
+		495FAC7C1C4D8EB9003C70CC /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		495FAC7D1C4D8EB9003C70CC /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; };
+		495FAC7E1C4D8EB9003C70CC /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		495FAC7F1C4D8EB9003C70CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				495FAC7A1C4D8EB9003C70CC /* Alamofire.framework in Embed Frameworks */,
+				495FAC7E1C4D8EB9003C70CC /* MQTTFramework.framework in Embed Frameworks */,
+				495FAC7C1C4D8EB9003C70CC /* FlybitsSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlybitsSDKWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		495FAC3B1C4D8DD2003C70CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		495FAC401C4D8DD2003C70CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		495FAC421C4D8DD2003C70CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		495FAC451C4D8DD2003C70CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		495FAC471C4D8DD2003C70CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495FAC4E1C4D8E56003C70CC /* MomentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentCollectionViewCell.swift; sourceTree = "<group>"; };
+		495FAC4F1C4D8E56003C70CC /* ZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		495FAC511C4D8E56003C70CC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
+		495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FlybitsSDK.framework; sourceTree = "<group>"; };
+		495FAC531C4D8E56003C70CC /* MQTTFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MQTTFramework.framework; sourceTree = "<group>"; };
+		495FAC551C4D8E56003C70CC /* PointOfInterestMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestMoment.swift; sourceTree = "<group>"; };
+		495FAC561C4D8E56003C70CC /* SpeedDialMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedDialMoment.swift; sourceTree = "<group>"; };
+		495FAC571C4D8E56003C70CC /* TextMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMoment.swift; sourceTree = "<group>"; };
+		495FAC581C4D8E56003C70CC /* UsersMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersMoment.swift; sourceTree = "<group>"; };
+		495FAC591C4D8E56003C70CC /* WebMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebMoment.swift; sourceTree = "<group>"; };
+		495FAC5A1C4D8E56003C70CC /* YoutubeMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeMoment.swift; sourceTree = "<group>"; };
+		495FAC5C1C4D8E56003C70CC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		495FAC5E1C4D8E56003C70CC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		495FAC5F1C4D8E56003C70CC /* MomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentViewController.swift; sourceTree = "<group>"; };
+		495FAC601C4D8E56003C70CC /* ZoneListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneListViewController.swift; sourceTree = "<group>"; };
+		495FAC611C4D8E56003C70CC /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
+		499FF7311C501E4D00E2DEFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		495FAC351C4D8DD2003C70CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495FAC791C4D8EB9003C70CC /* Alamofire.framework in Frameworks */,
+				495FAC7D1C4D8EB9003C70CC /* MQTTFramework.framework in Frameworks */,
+				495FAC7B1C4D8EB9003C70CC /* FlybitsSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		495FAC2F1C4D8DD2003C70CC = {
+			isa = PBXGroup;
+			children = (
+				499FF7311C501E4D00E2DEFA /* README.md */,
+				495FAC3A1C4D8DD2003C70CC /* FlybitsSDKWorkshop */,
+				495FAC391C4D8DD2003C70CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		495FAC391C4D8DD2003C70CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		495FAC3A1C4D8DD2003C70CC /* FlybitsSDKWorkshop */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC4D1C4D8E56003C70CC /* CollecitonViewCells */,
+				495FAC541C4D8E56003C70CC /* Models */,
+				495FAC5B1C4D8E56003C70CC /* Utils */,
+				495FAC5D1C4D8E56003C70CC /* ViewControllers */,
+				495FAC501C4D8E56003C70CC /* Frameworks */,
+				495FAC3B1C4D8DD2003C70CC /* AppDelegate.swift */,
+				495FAC3F1C4D8DD2003C70CC /* Main.storyboard */,
+				495FAC421C4D8DD2003C70CC /* Assets.xcassets */,
+				495FAC441C4D8DD2003C70CC /* LaunchScreen.storyboard */,
+				495FAC471C4D8DD2003C70CC /* Info.plist */,
+			);
+			path = FlybitsSDKWorkshop;
+			sourceTree = "<group>";
+		};
+		495FAC4D1C4D8E56003C70CC /* CollecitonViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC4E1C4D8E56003C70CC /* MomentCollectionViewCell.swift */,
+				495FAC4F1C4D8E56003C70CC /* ZoneCollectionViewCell.swift */,
+			);
+			path = CollecitonViewCells;
+			sourceTree = "<group>";
+		};
+		495FAC501C4D8E56003C70CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC511C4D8E56003C70CC /* Alamofire.framework */,
+				495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */,
+				495FAC531C4D8E56003C70CC /* MQTTFramework.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		495FAC541C4D8E56003C70CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC551C4D8E56003C70CC /* PointOfInterestMoment.swift */,
+				495FAC561C4D8E56003C70CC /* SpeedDialMoment.swift */,
+				495FAC571C4D8E56003C70CC /* TextMoment.swift */,
+				495FAC581C4D8E56003C70CC /* UsersMoment.swift */,
+				495FAC591C4D8E56003C70CC /* WebMoment.swift */,
+				495FAC5A1C4D8E56003C70CC /* YoutubeMoment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		495FAC5B1C4D8E56003C70CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC5C1C4D8E56003C70CC /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		495FAC5D1C4D8E56003C70CC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				495FAC5E1C4D8E56003C70CC /* LoginViewController.swift */,
+				495FAC601C4D8E56003C70CC /* ZoneListViewController.swift */,
+				495FAC611C4D8E56003C70CC /* ZoneViewController.swift */,
+				495FAC5F1C4D8E56003C70CC /* MomentViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		495FAC371C4D8DD2003C70CC /* FlybitsSDKWorkshop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "FlybitsSDKWorkshop" */;
+			buildPhases = (
+				495FAC341C4D8DD2003C70CC /* Sources */,
+				495FAC351C4D8DD2003C70CC /* Frameworks */,
+				495FAC361C4D8DD2003C70CC /* Resources */,
+				495FAC7F1C4D8EB9003C70CC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlybitsSDKWorkshop;
+			productName = FlybitsSDKWorkshop;
+			productReference = 495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		495FAC301C4D8DD2003C70CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Flybits Inc.";
+				TargetAttributes = {
+					495FAC371C4D8DD2003C70CC = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = CH9YG7X49H;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 495FAC331C4D8DD2003C70CC /* Build configuration list for PBXProject "FlybitsSDKWorkshop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 495FAC2F1C4D8DD2003C70CC;
+			productRefGroup = 495FAC391C4D8DD2003C70CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				495FAC371C4D8DD2003C70CC /* FlybitsSDKWorkshop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		495FAC361C4D8DD2003C70CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495FAC461C4D8DD2003C70CC /* LaunchScreen.storyboard in Resources */,
+				495FAC431C4D8DD2003C70CC /* Assets.xcassets in Resources */,
+				495FAC411C4D8DD2003C70CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		495FAC341C4D8DD2003C70CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495FAC6B1C4D8E56003C70CC /* WebMoment.swift in Sources */,
+				495FAC691C4D8E56003C70CC /* TextMoment.swift in Sources */,
+				495FAC631C4D8E56003C70CC /* ZoneCollectionViewCell.swift in Sources */,
+				495FAC621C4D8E56003C70CC /* MomentCollectionViewCell.swift in Sources */,
+				495FAC711C4D8E56003C70CC /* ZoneViewController.swift in Sources */,
+				495FAC6C1C4D8E56003C70CC /* YoutubeMoment.swift in Sources */,
+				495FAC701C4D8E56003C70CC /* ZoneListViewController.swift in Sources */,
+				495FAC6D1C4D8E56003C70CC /* Extensions.swift in Sources */,
+				495FAC6A1C4D8E56003C70CC /* UsersMoment.swift in Sources */,
+				495FAC3C1C4D8DD2003C70CC /* AppDelegate.swift in Sources */,
+				495FAC6F1C4D8E56003C70CC /* MomentViewController.swift in Sources */,
+				495FAC681C4D8E56003C70CC /* SpeedDialMoment.swift in Sources */,
+				495FAC671C4D8E56003C70CC /* PointOfInterestMoment.swift in Sources */,
+				495FAC6E1C4D8E56003C70CC /* LoginViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		495FAC3F1C4D8DD2003C70CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				495FAC401C4D8DD2003C70CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		495FAC441C4D8DD2003C70CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				495FAC451C4D8DD2003C70CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		495FAC481C4D8DD2003C70CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		495FAC491C4D8DD2003C70CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		495FAC4B1C4D8DD2003C70CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FlybitsSDKWorkshop/Frameworks",
+				);
+				INFOPLIST_FILE = FlybitsSDKWorkshop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		495FAC4C1C4D8DD2003C70CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FlybitsSDKWorkshop/Frameworks",
+				);
+				INFOPLIST_FILE = FlybitsSDKWorkshop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		495FAC331C4D8DD2003C70CC /* Build configuration list for PBXProject "FlybitsSDKWorkshop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495FAC481C4D8DD2003C70CC /* Debug */,
+				495FAC491C4D8DD2003C70CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "FlybitsSDKWorkshop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495FAC4B1C4D8DD2003C70CC /* Debug */,
+				495FAC4C1C4D8DD2003C70CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 495FAC301C4D8DD2003C70CC /* Project object */;
+}

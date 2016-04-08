@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t46</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>StringOrComment</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class WebMomentData {
+    struct Constants {
+        static let Websites = "websites"
+    }
+    
+    class WebData : NSObject {
+        struct Constants {
+            static let Description = "description"
+            static let Title = "title"
+            static let URL = "url"
+        }
+        var title: String?
+        var summary: String?
+        var URLString: String?
+        var locale: String!
+        var URL: NSURL? {
+            get {
+                if let URLString = URLString {
+                    return NSURL(string: URLString)
+                }
+                return nil
+            }
+        }
+        
+        init?(dictionary: NSDictionary) {
+            summary = dictionary.valueForKey(Constants.Description) as? String
+            title = dictionary.valueForKey(Constants.Title) as? String
+            URLString = dictionary.valueForKey(Constants.URL) as? String
+        }
+    }
+    
+    var websites:[WebData] = []
+    
+    init?(dictionary: NSDictionary) {
+        for (locale, itemDict) in dictionary as! [String:AnyObject] {
+            let webs = itemDict.valueForKey(Constants.Websites) as? [[String:AnyObject]]
+            if let webs = webs {
+                for data in webs {
+                    if let item = WebData(dictionary: data) {
+                        item.locale = locale
+                        websites.append(item)
+                    }
+                }
+            }
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>89E4CA25-B19B-45C8-8341-0063CA2DFEAD</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>WebMomentData Helper Class</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.6</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

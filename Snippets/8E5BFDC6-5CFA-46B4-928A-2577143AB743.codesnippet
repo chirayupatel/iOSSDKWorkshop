@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t37</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let moment = moments?[indexPath.item] {
+            moment.image?.loadImage(._100, locale: nil) { (image, error) -&gt; Void in
+                guard error == nil else {
+                    print("Encountered image loading error: \(error!)")
+                    return
+                }
+                UIView.transitionWithView(cell.momentImageView, duration: 0.2, options: .TransitionCrossDissolve, animations: { () -&gt; Void in
+                    cell.momentImageView.image = image.loadedImage()
+                }, completion: nil)
+            }
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8E5BFDC6-5CFA-46B4-928A-2577143AB743</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Collection View Data Source Fillers (cellForItem)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 3.7</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

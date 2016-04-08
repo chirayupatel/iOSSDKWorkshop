@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t76</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
+            if let userInfo = notification.userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? NSData {
+                self.apnsToken = apnsToken
+            }
+            NSNotificationCenter.defaultCenter().removeObserver(self.notificationToken!)
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0BD67443-05F3-4209-87A3-701A398E0D6F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Register for APNS token notification</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.6</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
