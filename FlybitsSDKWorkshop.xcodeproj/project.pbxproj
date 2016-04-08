@@ -30,6 +30,7 @@
 		495FAC7C1C4D8EB9003C70CC /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		495FAC7D1C4D8EB9003C70CC /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; };
 		495FAC7E1C4D8EB9003C70CC /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		499FF7301C501E2D00E2DEFA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 499FF72F1C501E2D00E2DEFA /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,7 +72,7 @@
 		495FAC5F1C4D8E56003C70CC /* MomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentViewController.swift; sourceTree = "<group>"; };
 		495FAC601C4D8E56003C70CC /* ZoneListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneListViewController.swift; sourceTree = "<group>"; };
 		495FAC611C4D8E56003C70CC /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
-		499FF7311C501E4D00E2DEFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		499FF72F1C501E2D00E2DEFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +92,7 @@
 		495FAC2F1C4D8DD2003C70CC = {
 			isa = PBXGroup;
 			children = (
-				499FF7311C501E4D00E2DEFA /* README.md */,
+				499FF72F1C501E2D00E2DEFA /* README.md */,
 				495FAC3A1C4D8DD2003C70CC /* FlybitsSDKWorkshop */,
 				495FAC391C4D8DD2003C70CC /* Products */,
 			);
@@ -207,11 +208,6 @@
 					495FAC371C4D8DD2003C70CC = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = CH9YG7X49H;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-						};
 					};
 				};
 			};
@@ -263,6 +259,7 @@
 				495FAC3C1C4D8DD2003C70CC /* AppDelegate.swift in Sources */,
 				495FAC6F1C4D8E56003C70CC /* MomentViewController.swift in Sources */,
 				495FAC681C4D8E56003C70CC /* SpeedDialMoment.swift in Sources */,
+				499FF7301C501E2D00E2DEFA /* README.md in Sources */,
 				495FAC671C4D8E56003C70CC /* PointOfInterestMoment.swift in Sources */,
 				495FAC6E1C4D8E56003C70CC /* LoginViewController.swift in Sources */,
 			);

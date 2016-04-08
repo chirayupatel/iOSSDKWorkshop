@@ -22,8 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // Tutorial Section 0.0 (API Key)
+        Session.sharedInstance.configuration.APIKey = "<#API KEY#>"
+        
+        print("Server: \(Session.sharedInstance.configuration.serverURL)")
+        
+        Session.sharedInstance.configuration.preferredLocales = [
+            NSLocale(localeIdentifier: "en_US"),
+            NSLocale(localeIdentifier: "fr_FR")
+        ]
 
         // Tutorial Section 7.1 (Push Notifications)
+        let notificationTypes: UIUserNotificationType = [.Badge, .Sound, .Alert]
+        let settings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
 
         return true
     }
@@ -51,7 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Tutorial Section 7.2 (Push Notifications)
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.ReceivedToken, object: [Constants.TokenKey : deviceToken])
+    }
 
     // Tutorial Section 7.5 (Push Notifications)
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        let handled = PushManager.sharedManager.notificationReceived(userInfo) { (result) in
+            completionHandler(result)
+        }
+        if !handled {
+            completionHandler(.NoData)
+        }
+    }
 }
 

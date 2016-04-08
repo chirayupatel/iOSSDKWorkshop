@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properties
     // Tutorial Section 7.3 (Push Notifications)
+    var apnsToken: NSData?
+    var notificationToken: NSObjectProtocol?
 
     var fromUnwindSegue: Bool = false
     var animateLogo: Bool = false {
@@ -50,6 +52,12 @@ class LoginViewController: UIViewController {
     // MARK: - View Lifecycle Functions
     override func awakeFromNib() {
         // Tutorial Section 7.6 (Push Notifications)
+        notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
+            if let userInfo = notification.userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? NSData {
+                self.apnsToken = apnsToken
+            }
+            NSNotificationCenter.defaultCenter().removeObserver(self.notificationToken!)
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -109,12 +117,36 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text ?? ""
 
         // Tutorial Section 1.1 (Login / Logout)
-        self.animateLogoAndPerformSegue(sender)
+        SessionRequest.Login(email: email, password: password, rememberMe: false) { (user, error) -> Void in
+            guard error == nil else {
+                self.errorLabel.text = "Login Error"
+                self.animateLogo = false
+                print("Encountered error: \(error)")
+                sender.enabled = true
+                return
+            }
+            guard user != nil else {
+                self.errorLabel.text = "Invalid User"
+                self.animateLogo = false
+                sender.enabled = true
+                return
+            }
+            self.errorLabel.text = ""
+            
+            // Tutorial Section 7.4 (Push Notifications)
+            if let apnsToken = self.apnsToken {
+                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Both, apnsToken: apnsToken)
+            }
+            self.animateLogoAndPerformSegue(sender)
+        }.execute()
     }
 
     @IBAction func onUnwindSegue(segue: UIStoryboardSegue) {
         fromUnwindSegue = true
 
         // Tutorial Section 1.2 (Login / Logout)
+        SessionRequest.Logout { (success, error) -> Void in
+            // Ignore result for this example
+        }.execute()
     }
 }
