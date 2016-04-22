@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // Tutorial Section 0.0 (API Key)
-        Session.sharedInstance.configuration.APIKey = "<#API KEY#>"
+        Session.sharedInstance.configuration.APIKey = "<#API Key#>"
         
         print("Server: \(Session.sharedInstance.configuration.serverURL)")
         

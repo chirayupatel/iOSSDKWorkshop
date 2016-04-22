@@ -136,7 +136,13 @@ class LoginViewController: UIViewController {
             // Tutorial Section 7.4 (Push Notifications)
             if let apnsToken = self.apnsToken {
                 PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Both, apnsToken: apnsToken)
+            } else {
+                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Foreground)
             }
+
+            // Tutorial Section 8.1 (Context Data)
+            Session.sharedInstance.trackLocation = true
+
             self.animateLogoAndPerformSegue(sender)
         }.execute()
     }

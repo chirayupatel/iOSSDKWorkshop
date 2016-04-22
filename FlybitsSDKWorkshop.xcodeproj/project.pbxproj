@@ -208,6 +208,11 @@
 					495FAC371C4D8DD2003C70CC = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = CH9YG7X49H;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

@@ -43,14 +43,20 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Tutorial Section 7.7 (Push Notifications)
         let enteredTopic = PushMessage.CompleteNotificationType(selectedZone, action: .Entered)
         let enteredToken = NSNotificationCenter.defaultCenter().addObserverForName(enteredTopic, object: nil, queue: nil) { (notification) in
-            self.zoneEnteredMessage(notification.userInfo)
+            guard let userInfo = notification.userInfo else {
+                return // No data!
+            }
+            self.zoneEnteredMessage(userInfo)
         }
         tokens.append(enteredToken)
 
         // Tutorial Section 7.8 (Push Notifications)
         let zoneEnteredTopic = PushMessage.CompleteNotificationType(.MomentInstance, action: .ZoneEntered, rawAction: selectedZone.id)
         let zoneEnteredToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
-            self.zoneEnteredMessage(notification.userInfo)
+            guard let userInfo = notification.userInfo else {
+                return // No data!
+            }
+            self.zoneEnteredMessage(userInfo)
         }
         tokens.append(zoneEnteredToken)
 
@@ -149,8 +155,20 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // Tutorial Section 7.9 (Push Notifications)
-    func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]?) {
-        // TODO: (TL) Handle messageInfo stuffs
+    func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]) {
+        if let error = messageInfo[PushManager.Constants.PushErrorType] {
+            print("Encountered error: \(error)")
+            return
+        }
+        guard let zone = messageInfo[PushManager.Constants.PushFetchedContent] as? Zone else {
+            print("No Zone fetched.")
+            return
+        }
+        guard zone.id == selectedZone.id else {
+            // This is not the Zone we're looking for
+            return
+        }
+        print("Entered Zone!")
     }
 
     // MARK: - Segue Functions
