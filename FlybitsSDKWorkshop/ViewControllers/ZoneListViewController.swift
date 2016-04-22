@@ -25,6 +25,14 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        // Tutorial Section 7.11 (Push Notifications)
+
+        // Tutorial Section 7.12 (Push Notifications)
+
+        // Tutorial Section 7.13 (Push Notifications)
+
+        // Tutorial Section 7.14 (Push Notifications)
+
         // Tutorial Section 2.1 (Zones)
         let query = ZonesQuery()
         ZoneRequest.Query(query) { (zones, pagination, error) -> Void in
@@ -51,6 +59,10 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             zoneViewController.selectedZone = zone
         }
     }
+
+    // MARK: - Functions
+
+    // Tutorial Section 7.15 (Push Notifications)
 
     // MARK: - UICollectionViewDataSource Functions
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -9,7 +9,7 @@
         <!--Zones-->
         <scene sceneID="SiN-qp-ufT">
             <objects>
-                <viewController id="pmo-fh-nFe" customClass="ZoneListViewController" customModule="FlybitsSDKWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pmo-fh-nFe" customClass="ZoneListViewController" customModule="Flybits_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hTN-Mz-AOe"/>
                         <viewControllerLayoutGuide type="bottom" id="z7j-in-A29"/>
@@ -31,7 +31,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="70" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ZoneCollectionViewCell" reuseIdentifier="ZoneCollectionViewCell" id="ZfW-lZ-M2b" customClass="ZoneCollectionViewCell" customModule="FlybitsSDKWorkshop" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ZoneCollectionViewCell" reuseIdentifier="ZoneCollectionViewCell" id="ZfW-lZ-M2b" customClass="ZoneCollectionViewCell" customModule="Flybits_SDK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="70" width="600" height="215"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -65,16 +65,31 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0g-3f-uH3">
+                                                            <rect key="frame" x="550" y="12" width="40" height="40"/>
+                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="Sed-r2-POC"/>
+                                                                <constraint firstAttribute="width" constant="40" id="xWT-1D-jqd"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="PMx-QD-hWn" firstAttribute="leading" secondItem="9Ab-et-yGJ" secondAttribute="leading" constant="8" id="3KS-Wz-nKs"/>
+                                                        <constraint firstItem="C0g-3f-uH3" firstAttribute="centerY" secondItem="9Ab-et-yGJ" secondAttribute="centerY" id="5Fi-Cs-Hr6"/>
                                                         <constraint firstAttribute="bottom" secondItem="Dhk-jB-ggz" secondAttribute="bottom" constant="2" id="FQu-hA-478"/>
                                                         <constraint firstItem="Dhk-jB-ggz" firstAttribute="leading" secondItem="9Ab-et-yGJ" secondAttribute="leading" constant="8" id="U7t-Rv-keU"/>
                                                         <constraint firstItem="PMx-QD-hWn" firstAttribute="top" secondItem="9Ab-et-yGJ" secondAttribute="top" constant="2" id="X1p-uq-aeE"/>
                                                         <constraint firstItem="Dhk-jB-ggz" firstAttribute="top" secondItem="PMx-QD-hWn" secondAttribute="bottom" constant="6" id="em2-7T-0Hn"/>
                                                         <constraint firstAttribute="trailing" secondItem="Dhk-jB-ggz" secondAttribute="trailing" constant="8" id="i9e-kx-BeG"/>
                                                         <constraint firstAttribute="trailing" secondItem="PMx-QD-hWn" secondAttribute="trailing" constant="8" id="jnv-dP-Yox"/>
+                                                        <constraint firstAttribute="trailing" secondItem="C0g-3f-uH3" secondAttribute="trailing" constant="10" id="mHl-UN-Kcd"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -96,6 +111,7 @@
                                             <constraint firstItem="9Ab-et-yGJ" firstAttribute="height" secondItem="ZfW-lZ-M2b" secondAttribute="height" multiplier="0.3" id="rlm-Wi-2QU"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="insideZoneIcon" destination="C0g-3f-uH3" id="fYI-8C-B3P"/>
                                             <outlet property="zoneDescriptionLabel" destination="Dhk-jB-ggz" id="W5j-MF-UYZ"/>
                                             <outlet property="zoneImageView" destination="6vH-Y1-WVz" id="BLf-3c-Jlx"/>
                                             <outlet property="zoneNameLabel" destination="PMx-QD-hWn" id="gov-Yr-IdM"/>
@@ -150,7 +166,7 @@
         <!--Zone-->
         <scene sceneID="2q3-FR-Q5j">
             <objects>
-                <viewController title="Zone" id="sIq-O5-Hbt" customClass="ZoneViewController" customModule="FlybitsSDKWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Zone" id="sIq-O5-Hbt" customClass="ZoneViewController" customModule="Flybits_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PiU-2S-U2l"/>
                         <viewControllerLayoutGuide type="bottom" id="2AX-hl-SHf"/>
@@ -172,7 +188,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MomentCollectionViewCell" id="ASd-kM-bu8" customClass="MomentCollectionViewCell" customModule="FlybitsSDKWorkshop" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MomentCollectionViewCell" id="ASd-kM-bu8" customClass="MomentCollectionViewCell" customModule="Flybits_SDK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -235,7 +251,7 @@
         <!--Moment-->
         <scene sceneID="fiA-UU-P5c">
             <objects>
-                <viewController title="Moment" id="bIk-1L-EKW" customClass="MomentViewController" customModule="FlybitsSDKWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Moment" id="bIk-1L-EKW" customClass="MomentViewController" customModule="Flybits_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YWn-hE-MsC"/>
                         <viewControllerLayoutGuide type="bottom" id="83I-4U-7T8"/>
@@ -279,7 +295,7 @@
         <!--Login View Controller-->
         <scene sceneID="nhQ-iG-9FU">
             <objects>
-                <viewController id="jBk-dm-5Yf" customClass="LoginViewController" customModule="FlybitsSDKWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jBk-dm-5Yf" customClass="LoginViewController" customModule="Flybits_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Akj-QO-J9h"/>
                         <viewControllerLayoutGuide type="bottom" id="gsT-mt-oAa"/>

@@ -17,10 +17,19 @@ class ZoneCollectionViewCell: UICollectionViewCell {
     @IBOutlet var zoneImageView: UIImageView!
     @IBOutlet var zoneNameLabel: UILabel!
     @IBOutlet var zoneDescriptionLabel: UILabel!
+    @IBOutlet var insideZoneIcon: UIView!
+
+    // MARK: - Properties
+    var isInZone: Bool = false {
+        didSet {
+            insideZoneIcon?.backgroundColor = isInZone ? UIColor.greenColor() : UIColor.darkGrayColor()
+        }
+    }
 
     // MARK: - Cell Lifecycle Functions
     override func prepareForReuse() {
         zoneNameLabel.text = ""
         zoneDescriptionLabel.text = ""
+        isInZone = false
     }
 }
