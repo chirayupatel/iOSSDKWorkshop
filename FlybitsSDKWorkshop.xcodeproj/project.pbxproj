@@ -49,7 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlybitsSDKWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		495FAC381C4D8DD2003C70CC /* Flybits SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flybits SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		495FAC3B1C4D8DD2003C70CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495FAC401C4D8DD2003C70CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		495FAC421C4D8DD2003C70CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		495FAC391C4D8DD2003C70CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */,
+				495FAC381C4D8DD2003C70CC /* Flybits SDK.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		495FAC371C4D8DD2003C70CC /* FlybitsSDKWorkshop */ = {
+		495FAC371C4D8DD2003C70CC /* Flybits SDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "FlybitsSDKWorkshop" */;
+			buildConfigurationList = 495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "Flybits SDK" */;
 			buildPhases = (
 				495FAC341C4D8DD2003C70CC /* Sources */,
 				495FAC351C4D8DD2003C70CC /* Frameworks */,
@@ -189,9 +189,9 @@
 			);
 			dependencies = (
 			);
-			name = FlybitsSDKWorkshop;
+			name = "Flybits SDK";
 			productName = FlybitsSDKWorkshop;
-			productReference = 495FAC381C4D8DD2003C70CC /* FlybitsSDKWorkshop.app */;
+			productReference = 495FAC381C4D8DD2003C70CC /* Flybits SDK.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -228,7 +228,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				495FAC371C4D8DD2003C70CC /* FlybitsSDKWorkshop */,
+				495FAC371C4D8DD2003C70CC /* Flybits SDK */,
 			);
 		};
 /* End PBXProject section */
@@ -425,7 +425,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "FlybitsSDKWorkshop" */ = {
+		495FAC4A1C4D8DD2003C70CC /* Build configuration list for PBXNativeTarget "Flybits SDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				495FAC4B1C4D8DD2003C70CC /* Debug */,
