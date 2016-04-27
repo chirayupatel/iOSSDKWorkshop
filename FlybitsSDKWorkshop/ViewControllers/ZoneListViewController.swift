@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 import FlybitsSDK
 
-class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, CoreLocationDataProviderDelegate {
     struct Constants {
         static let MomentSegue = "MomentSegue"
     }
@@ -72,11 +73,22 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // Tutorial Section 7.10 (Push Notifications)
             zones.forEach {
                 $0.subscribeToPush()
+                ZoneRequest.Favourite(zoneID: $0.id, favourite: true) { (zoneID, success, error) in
+                    guard success else {
+                        print("Unable to favourite Zone: \(zoneID)")
+                        return
+                    }
+                }.execute()
             }
 
             self.zones = zones
             self.zonesCollectionView.reloadData()
         }.execute()
+
+        // Tutorial Section 8.x (Context)
+        if let locationDataProvider = ContextManager.sharedManager.retrieveContextProvider(.CoreLocation) as? CoreLocationDataProvider {
+            locationDataProvider.addDelegate(self)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -167,6 +179,11 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         if let zone = zones?[indexPath.item] {
             self.performSegueWithIdentifier(Constants.MomentSegue, sender: zone)
         }
+    }
+
+    // MARK: - CoreLocationDataProviderDelegate Functions
+    func locationDataProvider(dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
+        print("Location Updated: \(locations)")
     }
 }
 
