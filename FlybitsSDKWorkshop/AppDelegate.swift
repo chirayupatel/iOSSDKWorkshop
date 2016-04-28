@@ -64,7 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Tutorial Section 7.2 (Push Notifications)
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.ReceivedToken, object: [Constants.TokenKey : deviceToken])
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.ReceivedToken, object: nil, userInfo:  [Constants.TokenKey : deviceToken])
+    }
+
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
     }
 
     // Tutorial Section 7.5 (Push Notifications)

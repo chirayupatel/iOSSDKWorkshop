@@ -55,6 +55,9 @@ class LoginViewController: UIViewController {
         notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
             if let userInfo = notification.userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? NSData {
                 self.apnsToken = apnsToken
+                if Session.sharedInstance.isConnected {
+                    PushManager.sharedManager.configuration.apnsToken = apnsToken
+                }
             }
             NSNotificationCenter.defaultCenter().removeObserver(self.notificationToken!)
         }
@@ -142,6 +145,7 @@ class LoginViewController: UIViewController {
 
             // Tutorial Section 8.1 (Context Data)
             Session.sharedInstance.trackLocation = true
+            ContextManager.sharedManager.startDataPolling()
 
             self.animateLogoAndPerformSegue(sender)
         }.execute()

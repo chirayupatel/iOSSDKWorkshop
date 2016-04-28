@@ -212,6 +212,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -390,6 +393,7 @@
 					"$(PROJECT_DIR)/FlybitsSDKWorkshop/Frameworks",
 				);
 				INFOPLIST_FILE = FlybitsSDKWorkshop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -408,6 +412,7 @@
 					"$(PROJECT_DIR)/FlybitsSDKWorkshop/Frameworks",
 				);
 				INFOPLIST_FILE = FlybitsSDKWorkshop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
