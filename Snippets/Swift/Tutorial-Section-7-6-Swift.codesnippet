@@ -12,22 +12,25 @@
 	<string>notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
             if let userInfo = notification.userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? NSData {
                 self.apnsToken = apnsToken
+                if Session.sharedInstance.isConnected {
+                    PushManager.sharedManager.configuration.apnsToken = apnsToken
+                }
             }
             NSNotificationCenter.defaultCenter().removeObserver(self.notificationToken!)
         }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>0BD67443-05F3-4209-87A3-701A398E0D6F</string>
+	<string>FF6C5F68-B3C2-494C-B014-A5989D3FC5DB</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Register for APNS token notification</string>
+	<string>Register for Received Token Notification</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Tutorial Section 7.6</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

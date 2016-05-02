@@ -3,29 +3,26 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>t71</string>
+	<string>t36</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let notificationTypes: UIUserNotificationType = [.Badge, .Sound, .Alert]
-        let settings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()</string>
+	<string>return [_moments count];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>C2841C68-815C-48AB-8801-926E681091CC</string>
+	<string>AD98BA45-6661-4DD2-992C-620C9CA26B9E</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Register for APNS with settings</string>
+	<string>Collection View Data Source Fillers (numberOfItems)</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Tutorial Section 7.1</string>
+	<string>Tutorial Section 3.6</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

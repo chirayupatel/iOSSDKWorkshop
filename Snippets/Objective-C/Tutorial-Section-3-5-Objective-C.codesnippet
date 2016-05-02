@@ -3,27 +3,26 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>t73</string>
+	<string>t35</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>ClassImplementation</string>
+		<string>ClassInterfaceMethods</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>var apnsToken: NSData?
-    var notificationToken: NSObjectProtocol?</string>
+	<string>@property (nonatomic) NSMutableArray&lt;Moment *&gt; *moments;</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>9E44BEEF-673B-4721-8A4C-49A8A319BD0B</string>
+	<string>7370F54E-13D8-44A1-B23B-628D0A2688F3</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>APNS Token and Notification Center Token</string>
+	<string>List of Moments</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Tutorial Section 7.3</string>
+	<string>Tutorial Section 3.5</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t44</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if(_moment != nil) {
+        self.title = [_moment momentName] ? [_moment momentName] : @"Moment";
+
+        [APIManager momentAutoValidate:_moment completion:^(BOOL validated, NSError * _Nullable error) {
+            if(validated) {
+                [self loadMomentData];
+            } else {
+                NSLog(@"Encountered validation error: %@", [error localizedDescription]);
+            }
+        }];
+    } else {
+        [self setTitle:@"Moment"];
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3BD08FC0-8005-4CD8-9327-F5647DEC7DCA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Sample Moment Request</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.4</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

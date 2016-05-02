@@ -85,7 +85,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             self.zonesCollectionView.reloadData()
         }.execute()
 
-        // Tutorial Section 8.x (Context)
+        // Tutorial Section 8.2 (Context)
         if let locationDataProvider = ContextManager.sharedManager.retrieveContextProvider(.CoreLocation) as? CoreLocationDataProvider {
             locationDataProvider.addDelegate(self)
         }
@@ -185,5 +185,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     func locationDataProvider(dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
         print("Location Updated: \(locations)")
     }
+
+    // MARK: - CoreLocationDataProviderDelegate Functions
+    // Tutorial Section 8.3 (Context)
 }
 

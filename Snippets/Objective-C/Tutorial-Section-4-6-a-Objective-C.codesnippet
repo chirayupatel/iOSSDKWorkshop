@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t46a</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@interface WebData : NSObject
+
+#pragma mark - Properties
+@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *summary;
+@property (nonatomic) NSString *URLString;
+@property (nonatomic) NSString *locale;
+@property (nonatomic) NSURL *URL;
+
+#pragma mark - Lifecycle Functions
+- (instancetype)initWithLocale:(NSString *)locale andDictionary:(NSDictionary *)dictionary;
+
+@end
+
+
+@interface WebMomentData : NSObject
+
+#pragma mark - Properties
+@property (nonatomic) NSMutableArray&lt;WebData *&gt; *websites;
+
+#pragma mark - Lifecycle Functions
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
+@end</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B5A60F5F-D500-4D31-B0FE-15C7350BA0DF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Moment model class declaration</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.6a</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t47</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>const NSString * const TextMomentPackageName    = @"com.flybits.moments.text";
+const NSString * const WebsiteMomentPackageName = @"com.flybits.moments.website";
+const NSString * const AOBMomentPackageName     = @"com.flybits.moments.jsonbuilder";</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B7BE063F-4420-494F-B5BD-E3DE235AB919</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Moment package names</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.7</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -9,7 +9,7 @@
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>SessionRequest.Login(email: email, password: password, rememberMe: false) { (user, error) -&gt; Void in
+	<string>        SessionRequest.Login(email: email, password: password, rememberMe: false) { (user, error) -&gt; Void in
             guard error == nil else {
                 self.errorLabel.text = "Login Error"
                 self.animateLogo = false
@@ -24,6 +24,8 @@
                 return
             }
             self.errorLabel.text = ""
+
+            // Tutorial Section 7.4 (Push Notifications)
             self.animateLogoAndPerformSegue(sender)
         }.execute()</string>
 	<key>IDECodeSnippetIdentifier</key>

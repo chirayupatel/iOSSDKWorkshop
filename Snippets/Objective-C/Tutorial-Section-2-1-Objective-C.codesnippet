@@ -3,30 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>t77</string>
+	<string>t21</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let enteredTopic = PushMessage.CompleteNotificationType(selectedZone, action: .Entered)
-        let enteredToken = NSNotificationCenter.defaultCenter().addObserverForName(enteredTopic, object: nil, queue: nil) { (notification) in
-            self.zoneEnteredMessage(notification.userInfo)
+	<string>ZonesQuery *query = [[ZonesQuery alloc] init];
+    [APIManager zonesQuery:query withCompletion:^(NSArray&lt;Zone *&gt; * _Nullable zones, Pager * _Nullable pager, NSError * _Nullable error) {
+        if(error != nil) {
+            NSLog(@"Encountered error: %@", error.localizedDescription);
+            return;
         }
-        tokens.append(enteredToken)</string>
+        _zones = [zones mutableCopy];
+        [_zonesCollectionView reloadData];
+    }];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>DC2EEA03-85F6-408A-A3F5-951267AD8433</string>
+	<string>48E21131-9E09-4F23-81A0-0B579719A4F8</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Register for Zone Entered notification</string>
+	<string>Sample Zone Request</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Tutorial Section 7.7</string>
+	<string>Tutorial Section 2.1</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>
