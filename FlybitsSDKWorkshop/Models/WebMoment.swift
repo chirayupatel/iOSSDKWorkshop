@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Tutorial Section 4.6a (Moments) - Helper Classes
+// Tutorial Section 4.6 (Moments) - Helper Classes
 class WebMomentData {
     struct Constants {
         static let Websites = "websites"
