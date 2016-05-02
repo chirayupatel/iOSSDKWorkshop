@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t710</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeExpression</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>zones.forEach {
+                $0.subscribeToPush()
+                ZoneRequest.Favourite(zoneID: $0.id, favourite: true) { (zoneID, success, error) in
+                    guard success else {
+                        print("Unable to favourite Zone: \(zoneID)")
+                        return
+                    }
+                    }.execute()
+            }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>46F47761-9D58-4B4B-B46B-1E707F77E843</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Subscribe to Push and add Favourite</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.10</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

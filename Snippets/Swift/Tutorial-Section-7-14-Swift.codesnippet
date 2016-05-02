@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t714</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let _ = NSNotificationCenter.defaultCenter().addObserverForName(PushManager.Constants.PushErrorTopic, object: nil, queue: nil) { (notification) in
+            print(PushManager.Constants.PushErrorTopic)
+            guard let error = notification.userInfo?[PushManager.Constants.PushErrorData] else {
+                return // Unsure how to detect error
+            }
+            print("Encountered Push Error: \(error)")
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CB138202-D4E6-4A31-8E9A-940D62319FDB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Register for Push Errors</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.14</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

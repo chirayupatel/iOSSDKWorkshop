@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t711</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let zoneModifiedTopic = PushMessage.NotificationType(.Zone, action: .Modified)
+        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneModifiedTopic, object: nil, queue: nil) { (notification) in
+            guard let userInfo = notification.userInfo else {
+                return
+            }
+            self.updateZoneInfo(userInfo)
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>304C0089-8E34-4E7F-8FD7-FFB678845B0B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Register for Zone Modified Push Message</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.11</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
