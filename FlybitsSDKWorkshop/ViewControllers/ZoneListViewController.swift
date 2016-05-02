@@ -33,6 +33,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Tutorial Section 7.14 (Push Notifications)
 
         // Tutorial Section 2.1 (Zones)
+
+        // Tutorial Section 8.2 (Context)
     }
 
     override func viewDidLayoutSubviews() {
@@ -69,5 +71,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Tutorial Section 3.2 (Selected Zone)
         self.performSegueWithIdentifier(Constants.MomentSegue, sender: nil)
     }
+
+    // MARK: - CoreLocationDataProviderDelegate Functions
+    // Tutorial Section 8.3 (Context)
 }
 

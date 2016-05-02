@@ -10,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>func loadMomentData() {
+        // Review https://developer.flybits.com/resources/moment_documentation/index.html for Moment endpoints.
         let urlString: String
         if moment.packageName == "com.flybits.moments.text" {
             urlString = "\(moment.launchURL)/TextBits"

@@ -9,20 +9,22 @@
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func toggleFilterButtonDisplay(isHidden: Bool) {
-        if isHidden {
-            self.navigationItem.rightBarButtonItem = nil
-        } else {
-            let filterBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: "onFilterAction:")
-            self.navigationItem.rightBarButtonItem = filterBarButtonItem
-        }
-    }</string>
+	<string>- (void)toggleFilterButtonDisplay:(BOOL)isHidden {
+    if(isHidden) {
+        [[self navigationItem] setRightBarButtonItem:nil];
+    } else {
+        UIBarButtonItem *filterBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(onFilterAction:)];
+        [[self navigationItem] setRightBarButtonItem:filterBarButtonItem];
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>B8C23A9E-54BD-45B5-8E5D-ECF6D021C5DC</string>
+	<string>125B91A1-0C3B-48E3-8088-D73691E4210C</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Toggle Filter For Tags</string>
+	<string>Toggle Filter for Tags</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Tutorial Section 6.3</string>
 	<key>IDECodeSnippetUserSnippet</key>

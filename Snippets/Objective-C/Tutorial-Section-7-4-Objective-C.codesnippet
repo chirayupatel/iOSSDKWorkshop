@@ -6,17 +6,20 @@
 	<string>t74</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeExpression</string>
+		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>if let apnsToken = self.apnsToken {
-                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Both, apnsToken: apnsToken)
-            }
-            self.animateLogoAndPerformSegue(sender)</string>
+	<string>PushConfiguration *configuration;
+        if(_apnsToken != nil) {
+            configuration = [PushConfiguration configurationWithServiceLevel:PushServiceLevelBoth andAPNSToken:_apnsToken];
+        } else {
+            configuration = [PushConfiguration configurationWithServiceLevel:PushServiceLevelForeground];
+        }
+        [[PushManager sharedManager] setConfiguration:configuration];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>E3D13926-0DF0-4970-9A22-7C8F9F7D6F01</string>
+	<string>74B67598-C053-4E6E-8C61-29E17E9F3BF1</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
@@ -26,6 +29,6 @@
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

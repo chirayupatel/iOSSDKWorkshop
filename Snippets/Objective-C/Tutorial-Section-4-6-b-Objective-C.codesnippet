@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t46b</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@implementation WebData
+
+#pragma mark - Properties
+
+- (NSURL *)URL {
+    if(_URLString != nil) {
+        return [NSURL URLWithString:_URLString];
+    }
+    return nil;
+}
+
+#pragma mark - Lifecycle Functions
+- (instancetype)initWithLocale:(NSString *)locale andDictionary:(NSDictionary *)dictionary {
+    self = [super init];
+    if(self) {
+        _summary = [dictionary objectForKey:@"description"];
+        _title = [dictionary objectForKey:@"title"];
+        _URLString = [dictionary objectForKey:@"url"];
+    }
+    return self;
+}
+
+@end
+
+@implementation WebMomentData
+
+#pragma mark - Lifecycle Functions
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super init];
+    if(self) {
+        _websites = [[NSMutableArray alloc] init];
+
+        for(NSString *locale in [dictionary allKeys]) {
+            NSArray *webs = [dictionary[locale] objectForKey:@"websites"];
+            for(NSDictionary *data in webs) {
+                WebData *item = [[WebData alloc] initWithLocale:locale andDictionary:data];
+                [_websites addObject:item];
+            }
+        }
+    }
+    return self;
+}
+
+@end</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D5677D08-3791-40EA-8DBC-71492E5B05CA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Moment model class implementation</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 4.6b</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

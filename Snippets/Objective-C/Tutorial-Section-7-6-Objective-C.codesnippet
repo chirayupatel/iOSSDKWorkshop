@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t76</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>_notificationToken = [[NSNotificationCenter defaultCenter] addObserverForName:@"com.flybits.push.receivedToken" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        if([note userInfo] &amp;&amp; [[note userInfo] objectForKey:@"com.flybits.push.token"]) {
+            _apnsToken = [[note userInfo] objectForKey:@"com.flybits.push.token"];
+        }
+        [[NSNotificationCenter defaultCenter] removeObserver:_notificationToken];
+    }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D01C1AD7-FB1F-457A-93E9-B75FA2F47A85</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Register for Received Token Notification</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.6</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

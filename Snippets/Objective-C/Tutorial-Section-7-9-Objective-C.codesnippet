@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t79</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)zoneEnteredMessage:(NSDictionary *)userInfo {
+    NSString *error = [userInfo objectForKey:[PushManagerConstants PushErrorType]];
+    if(error != nil) {
+        NSLog(@"Encountered error: %@", error);
+        return;
+    }
+    Zone *zone = (Zone *)[userInfo objectForKey:PushManagerConstants.PushFetchedContent];
+    if(zone == nil) {
+        NSLog(@"No Zone fetched.");
+        return;
+    }
+    if(![[zone identifier] isEqualToString:[_selectedZone identifier]]) {
+        // This is not the Zone we're looking for
+        return;
+    }
+    NSLog(@"Entered Zone!");
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>244B84C4-6D51-4856-885C-D459ED24754A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Handler for Flybits SDK Push Message</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 7.9</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
