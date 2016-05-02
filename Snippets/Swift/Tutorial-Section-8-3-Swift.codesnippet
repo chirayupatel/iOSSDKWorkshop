@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>t83</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func locationDataProvider(dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
+        print("Location Updated: \(locations)")
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>29182627-3691-4C1C-BFB7-421FD90CEAA1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CoreLocationDataProviderDelegate Location Updates</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tutorial Section 8.3</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
