@@ -78,7 +78,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
                         print("Unable to favourite Zone: \(zoneID)")
                         return
                     }
-                }.execute()
+                    }.execute()
             }
 
             self.zones = zones
@@ -111,14 +111,14 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // Tutorial Section 7.15 (Push Notifications)
     /* User Info format:
      [
-        "com.flybits.push.content"        : PushMessage // A PushMessage object
-        "com.flybits.push.source"         : PushSource  // APNS or MQTT
-        "com.flybits.push.sourceContent"  : APS Content // This is an optional entry that will contain the APS content of an APNS push message
-        "com.flybits.push.fetchedContent" : A Flybits model object // i.e. a Zone or Moment
-
-        -- OR --
-
-        "com.flybits.push.error.type" : <Error Code>
+     "com.flybits.push.content"        : PushMessage // A PushMessage object
+     "com.flybits.push.source"         : PushSource  // APNS or MQTT
+     "com.flybits.push.sourceContent"  : APS Content // This is an optional entry that will contain the APS content of an APNS push message
+     "com.flybits.push.fetchedContent" : A Flybits model object // i.e. a Zone or Moment
+     
+     -- OR --
+     
+     "com.flybits.push.error.type" : <Error Code>
      ]
      */
     func updateZoneInfo(userInfo: [NSObject: AnyObject]) {
@@ -134,10 +134,10 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // We don't have this Zone right now
             return
         }
-
+        
         // Update the Zone and refresh the UI
         zones?[index] = zone
-
+        
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
         dispatch_async(dispatch_get_main_queue()) {
             self.zonesCollectionView.reloadItemsAtIndexPaths([indexPath])
@@ -182,11 +182,9 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
 
     // MARK: - CoreLocationDataProviderDelegate Functions
+    // Tutorial Section 8.3 (Context)
     func locationDataProvider(dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
         print("Location Updated: \(locations)")
     }
-
-    // MARK: - CoreLocationDataProviderDelegate Functions
-    // Tutorial Section 8.3 (Context)
 }
 
