@@ -41,35 +41,35 @@ class MomentViewController: UIViewController {
             urlString = ""
         }
         
-        let request = NSURLRequest(URL: NSURL(string: urlString)!)
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let request = URLRequest(url: URL(string: urlString)!)
+        let task = URLSession.shared().dataTask(with: request) { (data, response, error) -> Void in
             guard let data = data else {
                 return
             }
-            if let json = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String:AnyObject] where json != nil {
+            if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String:AnyObject] where json != nil {
                 
                 // Accessing metadata in Swift:
                 // moment.metadata ...
                 
                 if self.moment.packageName == "com.flybits.moments.text" {
-                    self.momentWebView.hidden = true
-                    self.momentTextView.hidden = false
+                    self.momentWebView.isHidden = true
+                    self.momentTextView.isHidden = false
                     let textMomentData = TextMomentData(dictionary: json!)!
-                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    DispatchQueue.main.async { () -> Void in
                         self.momentTextView.text = textMomentData.texts["en"]?.summary ?? "No data."
                     }
                 } else if self.moment.packageName == "com.flybits.moments.website" {
-                    self.momentWebView.hidden = false
-                    self.momentTextView.hidden = true
+                    self.momentWebView.isHidden = false
+                    self.momentTextView.isHidden = true
                     let webMomentData = WebMomentData(dictionary: json!)!
-                    if let websiteURL = webMomentData.websites.first?.URL {
-                        let webRequest = NSURLRequest(URL: websiteURL)
+                    if let websiteURL = webMomentData.websites.first?.url {
+                        let webRequest = URLRequest(url: websiteURL)
                         self.momentWebView.loadRequest(webRequest)
                     }
                 } else if self.moment.packageName == "com.flybits.moments.jsonbuilder" {
-                    self.momentWebView.hidden = true
-                    self.momentTextView.hidden = false
-                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    self.momentWebView.isHidden = true
+                    self.momentTextView.isHidden = false
+                    DispatchQueue.main.async { () -> Void in
                         self.momentTextView.text = json!.debugDescription
                     }
                 }
@@ -84,7 +84,7 @@ class MomentViewController: UIViewController {
         if let moment = moment {
             self.title = moment.name.value ?? Constants.DefaultTitle
             
-            MomentRequest.AutoValidate(moment: moment) { (validated, error) -> Void in
+            _ = MomentRequest.autoValidate(moment: moment) { (validated, error) -> Void in
                 if validated {
                     self.loadMomentData()
                 } else {

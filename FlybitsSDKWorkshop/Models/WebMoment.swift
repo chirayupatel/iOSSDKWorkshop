@@ -22,21 +22,21 @@ class WebMomentData {
         }
         var title: String?
         var summary: String?
-        var URLString: String?
+        var urlString: String?
         var locale: String!
-        var URL: NSURL? {
+        var url: URL? {
             get {
-                if let URLString = URLString {
-                    return NSURL(string: URLString)
+                if let urlString = urlString {
+                    return URL(string: urlString)
                 }
                 return nil
             }
         }
         
         init?(dictionary: NSDictionary) {
-            summary = dictionary.valueForKey(Constants.Description) as? String
-            title = dictionary.valueForKey(Constants.Title) as? String
-            URLString = dictionary.valueForKey(Constants.URL) as? String
+            summary = dictionary.value(forKey: Constants.Description) as? String
+            title = dictionary.value(forKey: Constants.Title) as? String
+            urlString = dictionary.value(forKey: Constants.URL) as? String
         }
     }
     
@@ -44,7 +44,7 @@ class WebMomentData {
     
     init?(dictionary: NSDictionary) {
         for (locale, itemDict) in dictionary as! [String:AnyObject] {
-            let webs = itemDict.valueForKey(Constants.Websites) as? [[String:AnyObject]]
+            let webs = itemDict.value(forKey: Constants.Websites) as? [[String:AnyObject]]
             if let webs = webs {
                 for data in webs {
                     if let item = WebData(dictionary: data) {

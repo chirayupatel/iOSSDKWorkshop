@@ -24,13 +24,10 @@
 		495FAC6F1C4D8E56003C70CC /* MomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC5F1C4D8E56003C70CC /* MomentViewController.swift */; };
 		495FAC701C4D8E56003C70CC /* ZoneListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC601C4D8E56003C70CC /* ZoneListViewController.swift */; };
 		495FAC711C4D8E56003C70CC /* ZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495FAC611C4D8E56003C70CC /* ZoneViewController.swift */; };
-		495FAC791C4D8EB9003C70CC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC511C4D8E56003C70CC /* Alamofire.framework */; };
-		495FAC7A1C4D8EB9003C70CC /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC511C4D8E56003C70CC /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		495FAC7B1C4D8EB9003C70CC /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */; };
 		495FAC7C1C4D8EB9003C70CC /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		495FAC7D1C4D8EB9003C70CC /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; };
 		495FAC7E1C4D8EB9003C70CC /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495FAC531C4D8E56003C70CC /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		499FF7301C501E2D00E2DEFA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 499FF72F1C501E2D00E2DEFA /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,7 +37,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				495FAC7A1C4D8EB9003C70CC /* Alamofire.framework in Embed Frameworks */,
 				495FAC7E1C4D8EB9003C70CC /* MQTTFramework.framework in Embed Frameworks */,
 				495FAC7C1C4D8EB9003C70CC /* FlybitsSDK.framework in Embed Frameworks */,
 			);
@@ -58,7 +54,6 @@
 		495FAC471C4D8DD2003C70CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		495FAC4E1C4D8E56003C70CC /* MomentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentCollectionViewCell.swift; sourceTree = "<group>"; };
 		495FAC4F1C4D8E56003C70CC /* ZoneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneCollectionViewCell.swift; sourceTree = "<group>"; };
-		495FAC511C4D8E56003C70CC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
 		495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FlybitsSDK.framework; sourceTree = "<group>"; };
 		495FAC531C4D8E56003C70CC /* MQTTFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MQTTFramework.framework; sourceTree = "<group>"; };
 		495FAC551C4D8E56003C70CC /* PointOfInterestMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestMoment.swift; sourceTree = "<group>"; };
@@ -80,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495FAC791C4D8EB9003C70CC /* Alamofire.framework in Frameworks */,
 				495FAC7D1C4D8EB9003C70CC /* MQTTFramework.framework in Frameworks */,
 				495FAC7B1C4D8EB9003C70CC /* FlybitsSDK.framework in Frameworks */,
 			);
@@ -135,7 +129,6 @@
 		495FAC501C4D8E56003C70CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				495FAC511C4D8E56003C70CC /* Alamofire.framework */,
 				495FAC521C4D8E56003C70CC /* FlybitsSDK.framework */,
 				495FAC531C4D8E56003C70CC /* MQTTFramework.framework */,
 			);
@@ -208,6 +201,7 @@
 					495FAC371C4D8DD2003C70CC = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = CH9YG7X49H;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -267,7 +261,6 @@
 				495FAC3C1C4D8DD2003C70CC /* AppDelegate.swift in Sources */,
 				495FAC6F1C4D8E56003C70CC /* MomentViewController.swift in Sources */,
 				495FAC681C4D8E56003C70CC /* SpeedDialMoment.swift in Sources */,
-				499FF7301C501E2D00E2DEFA /* README.md in Sources */,
 				495FAC671C4D8E56003C70CC /* PointOfInterestMoment.swift in Sources */,
 				495FAC6E1C4D8E56003C70CC /* LoginViewController.swift in Sources */,
 			);
@@ -398,6 +391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -417,6 +411,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.FlybitsSDKWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

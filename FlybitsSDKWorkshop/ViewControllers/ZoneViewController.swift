@@ -41,8 +41,8 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Do any additional setup after loading the view, typically from a nib.
 
         // Tutorial Section 7.7 (Push Notifications)
-        let enteredTopic = PushMessage.CompleteNotificationType(selectedZone, action: .Entered)
-        let enteredToken = NSNotificationCenter.defaultCenter().addObserverForName(enteredTopic, object: nil, queue: nil) { (notification) in
+        let enteredTopic = NSNotification.Name(rawValue: PushMessage.CompleteNotificationType(selectedZone, action: .entered))
+        let enteredToken = NotificationCenter.default().addObserver(forName: enteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return // No data!
             }
@@ -51,8 +51,8 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         tokens.append(enteredToken)
 
         // Tutorial Section 7.8 (Push Notifications)
-        let zoneEnteredTopic = PushMessage.CompleteNotificationType(.MomentInstance, action: .ZoneEntered, rawAction: selectedZone.id)
-        let zoneEnteredToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
+        let zoneEnteredTopic = NSNotification.Name(rawValue: PushMessage.CompleteNotificationType(.momentInstance, action: .zoneEntered, rawAction: selectedZone.id))
+        let zoneEnteredToken = NotificationCenter.default().addObserver(forName: zoneEnteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return // No data!
             }
@@ -65,7 +65,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.title = selectedZone.name.value ?? Constants.DefaultTitle
             self.zoneImageView.image = selectedZone.image.loadedImage()
             
-            MomentRequest.GetZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -> Void in
+            _ = MomentRequest.getZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -> Void in
                 guard error == nil else {
                     print("Encountered error: \(error!)")
                     return
@@ -78,15 +78,15 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
 
         // Tutorial Section 5.1 (Zone Connect / Disconnect - Analytics)
-        let query = DeviceQuery(type: DeviceQuery.EntityType.Zone, id: selectedZone.id)
-        DeviceRequest.Connect(query) { (error) -> Void in
+        let query = DeviceQuery(type: DeviceQuery.EntityType.zone, id: selectedZone.id)
+        _ = DeviceRequest.connect(query) { (error) -> Void in
             // Check for success
             guard error == nil else {
                 print("Encountered error connecting to Zone: \(self.selectedZone.id)")
                 return
             }
             
-            DeviceRequest.Disconnect(query) { (error) -> Void in
+            _ = DeviceRequest.disconnect(query) { (error) -> Void in
                 // Check for success
                 guard error == nil else {
                     print("Encountered error connecting to Zone: \(self.selectedZone.id)")
@@ -96,13 +96,13 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         }.execute()
 
         // Tutorial Section 6.1 (Tags)
-        TagsRequest.Query(TagQuery()) { (tags: [VisibleTag]?, pagination, error) -> Void in
+        _ = TagsRequest.Query(TagQuery()) { (tags: [VisibleTag]?, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error retrieving tags: \(error!)")
                 return
             }
             self.tags = tags
-            self.toggleFilterButtonDisplay(tags == nil)
+            self.toggleFilterButtonDisplay(isHidden: tags == nil)
         }.execute()
     }
 
@@ -111,17 +111,17 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
 
         // Fit 3 on a screen at a time with a tiny amount of padding
         let size = floor(self.view.frame.width / 3) - 5
-        let spacing = self.view.frame.width % 3
-        flowLayout.itemSize = CGSizeMake(size, size)
+        let spacing = self.view.frame.width.truncatingRemainder(dividingBy: 3)
+        flowLayout.itemSize = CGSize(width: size, height: size)
         flowLayout.minimumInteritemSpacing = spacing
         flowLayout.minimumLineSpacing = spacing + 5
         flowLayout.sectionInset = UIEdgeInsets(top: zoneImageView.frame.height + self.topLayoutGuide.length + 10, left: flowLayout.sectionInset.left, bottom: flowLayout.sectionInset.bottom, right: flowLayout.sectionInset.right)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        tokens.forEach { NSNotificationCenter.defaultCenter().removeObserver($0) }
+        tokens.forEach { NotificationCenter.default().removeObserver($0) }
         tokens.removeAll()
     }
 
@@ -131,7 +131,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         if isHidden {
             self.navigationItem.rightBarButtonItem = nil
         } else {
-            let filterBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(ZoneViewController.onFilterAction(_:)))
+            let filterBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(ZoneViewController.onFilterAction(sender:)))
             self.navigationItem.rightBarButtonItem = filterBarButtonItem
         }
     }
@@ -144,7 +144,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
             momentQuery.momentIDs = selectedTagFilter
         }
         // Was: MomentRequest.GetZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -> Void in
-        MomentRequest.Query(momentQuery) { (moments, pagination, error) -> Void in
+        _ = MomentRequest.Query(momentQuery) { (moments, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error: \(error!)")
                 return
@@ -155,7 +155,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // Tutorial Section 7.9 (Push Notifications)
-    func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]) {
+    func zoneEnteredMessage(_ messageInfo: [String: Any]) {
         if let error = messageInfo[PushManager.Constants.PushErrorType] {
             print("Encountered error: \(error)")
             return
@@ -172,7 +172,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // MARK: - Segue Functions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Tutorial Section 4.3 (Moments)
         if let moment = sender as? Moment {
             let momentViewController = segue.destinationViewController as! MomentViewController
@@ -181,22 +181,22 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // MARK: - UICollectionViewDataSource Functions
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Tutorial Section 3.6 (Selected Zone)
         return moments?.count ?? 0
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MomentCollectionViewCell.Constants.CellReuseIdentifier, forIndexPath: indexPath) as! MomentCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MomentCollectionViewCell.Constants.CellReuseIdentifier, for: indexPath) as! MomentCollectionViewCell
 
         // Tutorial Section 3.7 (Selected Zone)
-        if let moment = moments?[indexPath.item] {
-            moment.image?.loadImage(._100, locale: nil) { (image, error) -> Void in
+        if let moment = moments?[indexPath.item!] {
+            _ = moment.image?.loadImage(._100, locale: nil) { (image, error) -> Void in
                 guard error == nil else {
                     print("Encountered image loading error: \(error!)")
                     return
                 }
-                UIView.transitionWithView(cell.momentImageView, duration: 0.2, options: .TransitionCrossDissolve, animations: { () -> Void in
+                UIView.transition(with: cell.momentImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { () -> Void in
                     cell.momentImageView.image = image.loadedImage()
                 }, completion: nil)
             }
@@ -205,10 +205,10 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // MARK: - UICollectionViewDelegate Functions
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Tutorial Section 4.2 (Moments)
-        if let moment = moments?[indexPath.item] {
-            self.performSegueWithIdentifier(Constants.MomentSegue, sender: moment)
+        if let moment = moments?[indexPath.item!] {
+            self.performSegue(withIdentifier: Constants.MomentSegue, sender: moment)
         }
     }
 
@@ -219,21 +219,21 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
             return // Nothing to show
         }
         
-        let alertController = UIAlertController(title: nil, message: "Filter By Tag", preferredStyle: .ActionSheet)
-        alertController.modalPresentationStyle = .Popover
+        let alertController = UIAlertController(title: nil, message: "Filter By Tag", preferredStyle: .actionSheet)
+        alertController.modalPresentationStyle = .popover
         alertController.popoverPresentationController?.barButtonItem = sender
         
         
         for tag in tags {
-            alertController.addAction(UIAlertAction(title: tag.value?.defaultValue ?? "Tag \(tag.id)", style: .Default) { (action) -> Void in
+            alertController.addAction(UIAlertAction(title: tag.value?.defaultValue ?? "Tag \(tag.id)", style: .default) { (action) -> Void in
                 self.selectedTagFilter = tag.zoneMomentInstanceIDs
                 self.doMomentQuery()
             })
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             // Do nothing
         })
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

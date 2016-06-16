@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properties
     // Tutorial Section 7.3 (Push Notifications)
-    var apnsToken: NSData?
+    var apnsToken: Data?
     var notificationToken: NSObjectProtocol?
 
     var fromUnwindSegue: Bool = false
@@ -42,9 +42,9 @@ class LoginViewController: UIViewController {
                 animation.repeatCount = MAXFLOAT
                 animation.toValue = M_PI * 2.0
                 animation.fromValue = 0
-                logoImageView.layer.addAnimation(animation, forKey: Constants.RotationAnimation)
+                logoImageView.layer.add(animation, forKey: Constants.RotationAnimation)
             } else {
-                logoImageView.layer.removeAnimationForKey(Constants.RotationAnimation)
+                logoImageView.layer.removeAnimation(forKey: Constants.RotationAnimation)
             }
         }
     }
@@ -52,18 +52,18 @@ class LoginViewController: UIViewController {
     // MARK: - View Lifecycle Functions
     override func awakeFromNib() {
         // Tutorial Section 7.6 (Push Notifications)
-        notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
-            if let userInfo = notification.userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? NSData {
+        notificationToken = NotificationCenter.default().addObserver(forName: AppDelegate.Constants.ReceivedToken, object: nil, queue: nil) { (notification) in
+            if let userInfo = (notification as NSNotification).userInfo, apnsToken = userInfo[AppDelegate.Constants.TokenKey] as? Data {
                 self.apnsToken = apnsToken
-                if Session.sharedInstance.isConnected {
+                if Session.sharedInstance.status == .connected {
                     PushManager.sharedManager.configuration.apnsToken = apnsToken
                 }
             }
-            NSNotificationCenter.defaultCenter().removeObserver(self.notificationToken!)
+            NotificationCenter.default().removeObserver(self.notificationToken!)
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if fromUnwindSegue {
             fromUnwindSegue = false
             reverseLogoAnimation()
@@ -71,19 +71,19 @@ class LoginViewController: UIViewController {
     }
 
     // MARK: - Functions
-    func animateLogoAndPerformSegue(sender: UIButton) {
-        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
-            self.emailTextField.hidden = true
-            self.passwordTextField.hidden = true
-            self.loginButton.hidden = true
+    func animateLogoAndPerformSegue(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { () -> Void in
+            self.emailTextField.isHidden = true
+            self.passwordTextField.isHidden = true
+            self.loginButton.isHidden = true
             self.logoImageViewTopConstraint.constant = self.view.frame.height / 2 - self.logoImageView.frame.height / 2 - self.topLayoutGuide.length
             self.view.layoutIfNeeded()
         }) { (finished) -> Void in
             self.logoImageViewCenterConstraint.constant = self.view.frame.width
-            UIView.animateWithDuration(0.5, delay: 0.2, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseIn, .curveEaseOut], animations: { () -> Void in
                 self.view.layoutIfNeeded()
             }) { (finished) -> Void in
-                self.performSegueWithIdentifier(Constants.LoginSegue, sender: nil)
+                self.performSegue(withIdentifier: Constants.LoginSegue, sender: nil)
                 self.animateLogo = false
             }
         }
@@ -92,55 +92,55 @@ class LoginViewController: UIViewController {
     func reverseLogoAnimation() {
         self.animateLogo = true
         self.logoImageViewCenterConstraint.constant = 0
-        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { () -> Void in
             self.view.layoutIfNeeded()
         }) { (finished) -> Void in
             self.logoImageViewTopConstraint.constant = Constants.LogoImageViewOffset
-            UIView.animateWithDuration(0.5, delay: 0.2, options: .CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseIn, .curveEaseOut], animations: { () -> Void in
                 self.view.layoutIfNeeded()
             }) { (finished) -> Void in
-                UIView.animateWithDuration(0.5, delay: 0.2, options: .CurveEaseOut, animations: { () -> Void in
-                    self.emailTextField.hidden = false
-                    self.passwordTextField.hidden = false
-                    self.loginButton.hidden = false
+                UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseOut, animations: { () -> Void in
+                    self.emailTextField.isHidden = false
+                    self.passwordTextField.isHidden = false
+                    self.loginButton.isHidden = false
                 }) { (finished) -> Void in
                     self.animateLogo = false
-                    self.loginButton.enabled = true
+                    self.loginButton.isEnabled = true
                 }
             }
         }
     }
 
     // MARK: - IBActions
-    @IBAction func onLoginAction(sender: UIButton) {
-        sender.enabled = false
+    @IBAction func onLoginAction(_ sender: UIButton) {
+        sender.isEnabled = false
         animateLogo = true
 
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
 
         // Tutorial Section 1.1 (Login / Logout)
-        SessionRequest.Login(email: email, password: password, rememberMe: false) { (user, error) -> Void in
+        _ = SessionRequest.login(email: email, password: password, rememberMe: false) { (user, error) -> Void in
             guard error == nil else {
                 self.errorLabel.text = "Login Error"
                 self.animateLogo = false
                 print("Encountered error: \(error)")
-                sender.enabled = true
+                sender.isEnabled = true
                 return
             }
             guard user != nil else {
                 self.errorLabel.text = "Invalid User"
                 self.animateLogo = false
-                sender.enabled = true
+                sender.isEnabled = true
                 return
             }
             self.errorLabel.text = ""
             
             // Tutorial Section 7.4 (Push Notifications)
             if let apnsToken = self.apnsToken {
-                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Both, apnsToken: apnsToken)
+                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .both, apnsToken: apnsToken)
             } else {
-                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .Foreground)
+                PushManager.sharedManager.configuration = PushConfiguration(serviceLevel: .foreground)
             }
 
             // Tutorial Section 8.1 (Context Data)
@@ -151,11 +151,11 @@ class LoginViewController: UIViewController {
         }.execute()
     }
 
-    @IBAction func onUnwindSegue(segue: UIStoryboardSegue) {
+    @IBAction func onUnwindSegue(_ segue: UIStoryboardSegue) {
         fromUnwindSegue = true
 
         // Tutorial Section 1.2 (Login / Logout)
-        SessionRequest.Logout { (success, error) -> Void in
+        _ = SessionRequest.logout { (success, error) -> Void in
             // Ignore result for this example
         }.execute()
     }

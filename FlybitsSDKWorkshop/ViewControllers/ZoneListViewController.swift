@@ -27,8 +27,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Do any additional setup after loading the view, typically from a nib.
 
         // Tutorial Section 7.11 (Push Notifications)
-        let zoneModifiedTopic = PushMessage.NotificationType(.Zone, action: .Modified)
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneModifiedTopic, object: nil, queue: nil) { (notification) in
+        let zoneModifiedTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .modified))
+        let _ = NotificationCenter.default().addObserver(forName: zoneModifiedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
@@ -36,8 +36,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
 
         // Tutorial Section 7.12 (Push Notifications)
-        let zoneEnteredTopic = PushMessage.NotificationType(.Zone, action: .Entered) // NOTE: This is for .Foreground Push
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
+        let zoneEnteredTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .entered)) // NOTE: This is for .Foreground Push
+        let _ = NotificationCenter.default().addObserver(forName: zoneEnteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
@@ -45,8 +45,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
 
         // Tutorial Section 7.13 (Push Notifications)
-        let zoneExitedTopic = PushMessage.NotificationType(.Zone, action: .Exited) // NOTE: This is for .Foreground Push
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneExitedTopic, object: nil, queue: nil) { (notification) in
+        let zoneExitedTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .exited)) // NOTE: This is for .Foreground Push
+        let _ = NotificationCenter.default().addObserver(forName: zoneExitedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
@@ -54,7 +54,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
 
         // Tutorial Section 7.14 (Push Notifications)
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(PushManager.Constants.PushErrorTopic, object: nil, queue: nil) { (notification) in
+        let _ = NotificationCenter.default().addObserver(forName: NSNotification.Name(rawValue: PushManager.Constants.PushErrorTopic), object: nil, queue: nil) { (notification) in
             print(PushManager.Constants.PushErrorTopic)
             guard let error = notification.userInfo?[PushManager.Constants.PushErrorData] else {
                 return // Unsure how to detect error
@@ -64,7 +64,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
 
         // Tutorial Section 2.1 (Zones)
         let query = ZonesQuery()
-        ZoneRequest.Query(query) { (zones, pagination, error) -> Void in
+        _ = ZoneRequest.Query(query) { (zones, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error: \(error!)")
                 return
@@ -73,12 +73,12 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // Tutorial Section 7.10 (Push Notifications)
             zones.forEach {
                 $0.subscribeToPush()
-                ZoneRequest.Favourite(zoneID: $0.id, favourite: true) { (zoneID, success, error) in
+                _ = ZoneRequest.favourite(zoneID: $0.id, favourite: true) { (zoneID, success, error) in
                     guard success else {
                         print("Unable to favourite Zone: \(zoneID)")
                         return
                     }
-                    }.execute()
+                }.execute()
             }
 
             self.zones = zones
@@ -86,19 +86,19 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         }.execute()
 
         // Tutorial Section 8.2 (Context)
-        if let locationDataProvider = ContextManager.sharedManager.retrieveContextProvider(.CoreLocation) as? CoreLocationDataProvider {
-            locationDataProvider.addDelegate(self)
+        if let locationDataProvider = ContextManager.sharedManager.retrieveContextProvider(.coreLocation) as? CoreLocationDataProvider {
+            _ = locationDataProvider.addDelegate(self)
         }
     }
 
     override func viewDidLayoutSubviews() {
         let flowLayout = zonesCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
 
-        flowLayout.itemSize = CGSizeMake(self.view.frame.width, flowLayout.itemSize.height)
+        flowLayout.itemSize = CGSize(width: self.view.frame.width, height: flowLayout.itemSize.height)
     }
 
     // MARK: - Segue Functions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Tutorial Section 3.3 (Selected Zone)
         if let zone = sender as? Zone {
             let zoneViewController = segue.destinationViewController as! ZoneViewController
@@ -121,7 +121,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
      "com.flybits.push.error.type" : <Error Code>
      ]
      */
-    func updateZoneInfo(userInfo: [NSObject: AnyObject]) {
+    func updateZoneInfo(_ userInfo: [String: Any]) {
         if let error = userInfo[PushManager.Constants.PushErrorType] {
             print("Encountered error: \(error)")
             return
@@ -130,28 +130,28 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             print("No Zone fetched.")
             return
         }
-        guard let index = zones?.indexOf(zone) else {
+        guard let index = zones?.index(of: zone) else {
             // We don't have this Zone right now
             return
         }
         
         // Update the Zone and refresh the UI
         zones?[index] = zone
-        
-        let indexPath = NSIndexPath(forItem: index, inSection: 0)
-        dispatch_async(dispatch_get_main_queue()) {
-            self.zonesCollectionView.reloadItemsAtIndexPaths([indexPath])
+
+        let indexPath = IndexPath(item: index, section: 0)
+        DispatchQueue.main.async {
+            self.zonesCollectionView.reloadItems(at: [indexPath])
         }
     }
 
     // MARK: - UICollectionViewDataSource Functions
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Tutorial Section 2.3 (Zones)
         return zones?.count ?? 0
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ZoneCollectionViewCell.Constants.CellReuseIdentifier, forIndexPath: indexPath) as! ZoneCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ZoneCollectionViewCell.Constants.CellReuseIdentifier, for: indexPath) as! ZoneCollectionViewCell
 
         // Tutorial Section 2.4 (Zones)
         if let zone = zones?[indexPath.row] {
@@ -160,12 +160,12 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
 
             cell.zoneNameLabel.text = zone.name.value
             cell.zoneDescriptionLabel.text = zone.zoneDescription.value
-            zone.image.loadImage(._100, locale: nil) { (image, error) -> Void in
+            _ = zone.image.loadImage(._100, locale: nil) { (image, error) -> Void in
                 guard error == nil else {
                     print("Encountered image loading error: \(error!)")
                     return
                 }
-                UIView.transitionWithView(cell.zoneImageView, duration: 0.2, options: .TransitionCrossDissolve, animations: { () -> Void in
+                UIView.transition(with: cell.zoneImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { () -> Void in
                     cell.zoneImageView.image = image.loadedImage()
                     }, completion: nil)
             }
@@ -174,16 +174,16 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
 
     // MARK: - UICollectionViewDelegate Functions
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Tutorial Section 3.2 (Selected Zone)
-        if let zone = zones?[indexPath.item] {
-            self.performSegueWithIdentifier(Constants.MomentSegue, sender: zone)
+        if let zone = zones?[indexPath.item!] {
+            self.performSegue(withIdentifier: Constants.MomentSegue, sender: zone)
         }
     }
 
     // MARK: - CoreLocationDataProviderDelegate Functions
     // Tutorial Section 8.3 (Context)
-    func locationDataProvider(dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
+    func locationDataProvider(_ dataProvider: CoreLocationDataProvider, didUpdateLocations locations: [CLLocation]) {
         print("Location Updated: \(locations)")
     }
 }

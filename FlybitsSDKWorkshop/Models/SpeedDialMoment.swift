@@ -31,19 +31,19 @@ class SpeeddialMomentData {
         
         init?(dictionary: NSDictionary) {
             
-            summary = dictionary.valueForKey("description") as? String
-            title = dictionary.valueForKey("title") as? String
-            name = dictionary.valueForKey("name") as? String
-            firstname = dictionary.valueForKey("firstname") as? String
-            lastname = dictionary.valueForKey("lastname") as? String
-            email = dictionary.valueForKey("email") as? String
-            address = dictionary.valueForKey("address") as? String
-            type = dictionary.valueForKey("type") as? String
-            countryCode = dictionary.valueForKey("countryCode") as? String
-            areaCode = dictionary.valueForKey("areaCode") as? String
-            exchangeNumber = dictionary.valueForKey("exchangeNumber") as? String
-            lineNumber = dictionary.valueForKey("lineNumber") as? String
-            fullPhoneNumber = dictionary.valueForKey("fullPhoneNumber") as? String
+            summary = dictionary.value(forKey: "description") as? String
+            title = dictionary.value(forKey: "title") as? String
+            name = dictionary.value(forKey: "name") as? String
+            firstname = dictionary.value(forKey: "firstname") as? String
+            lastname = dictionary.value(forKey: "lastname") as? String
+            email = dictionary.value(forKey: "email") as? String
+            address = dictionary.value(forKey: "address") as? String
+            type = dictionary.value(forKey: "type") as? String
+            countryCode = dictionary.value(forKey: "countryCode") as? String
+            areaCode = dictionary.value(forKey: "areaCode") as? String
+            exchangeNumber = dictionary.value(forKey: "exchangeNumber") as? String
+            lineNumber = dictionary.value(forKey: "lineNumber") as? String
+            fullPhoneNumber = dictionary.value(forKey: "fullPhoneNumber") as? String
         }
         
     }
@@ -51,7 +51,7 @@ class SpeeddialMomentData {
     var phonenumbers:[SpeeddialData] = []
     
     init?(dictionary: NSDictionary) {
-        let webs = dictionary.valueForKey("phoneNumbers") as? [[String:AnyObject]]
+        let webs = dictionary.value(forKey: "phoneNumbers") as? [[String:AnyObject]]
         
         if let webs = webs {
             for data in webs {
