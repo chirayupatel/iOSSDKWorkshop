@@ -49,17 +49,17 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
 
         // Fit 3 on a screen at a time with a tiny amount of padding
         let size = floor(self.view.frame.width / 3) - 5
-        let spacing = self.view.frame.width % 3
-        flowLayout.itemSize = CGSizeMake(size, size)
+        let spacing = self.view.frame.width.truncatingRemainder(dividingBy: 3)
+        flowLayout.itemSize = CGSize(width: size, height: size)
         flowLayout.minimumInteritemSpacing = spacing
         flowLayout.minimumLineSpacing = spacing + 5
         flowLayout.sectionInset = UIEdgeInsets(top: zoneImageView.frame.height + self.topLayoutGuide.length + 10, left: flowLayout.sectionInset.left, bottom: flowLayout.sectionInset.bottom, right: flowLayout.sectionInset.right)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        tokens.forEach { NSNotificationCenter.defaultCenter().removeObserver($0) }
+        tokens.forEach { NotificationCenter.default().removeObserver($0) }
         tokens.removeAll()
     }
 
@@ -71,18 +71,18 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     // Tutorial Section 7.9 (Push Notifications)
 
     // MARK: - Segue Functions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Tutorial Section 4.3 (Moments)
     }
 
     // MARK: - UICollectionViewDataSource Functions
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Tutorial Section 3.6 (Selected Zone)
         return 5
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MomentCollectionViewCell.Constants.CellReuseIdentifier, forIndexPath: indexPath) as! MomentCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MomentCollectionViewCell.Constants.CellReuseIdentifier, for: indexPath) as! MomentCollectionViewCell
 
         // Tutorial Section 3.7 (Selected Zone)
 
@@ -90,9 +90,9 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // MARK: - UICollectionViewDelegate Functions
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Tutorial Section 4.2 (Moments)
-        self.performSegueWithIdentifier(Constants.MomentSegue, sender: nil)
+        self.performSegue(withIdentifier: Constants.MomentSegue, sender: nil)
     }
 
     // MARK: - IBActions

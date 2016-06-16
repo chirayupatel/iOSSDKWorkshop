@@ -40,11 +40,11 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLayoutSubviews() {
         let flowLayout = zonesCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
 
-        flowLayout.itemSize = CGSizeMake(self.view.frame.width, flowLayout.itemSize.height)
+        flowLayout.itemSize = CGSize(width: self.view.frame.width, height: flowLayout.itemSize.height)
     }
 
     // MARK: - Segue Functions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Tutorial Section 3.3 (Selected Zone)
     }
 
@@ -53,13 +53,13 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // Tutorial Section 7.15 (Push Notifications)
 
     // MARK: - UICollectionViewDataSource Functions
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Tutorial Section 2.3 (Zones)
         return 5
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ZoneCollectionViewCell.Constants.CellReuseIdentifier, forIndexPath: indexPath) as! ZoneCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ZoneCollectionViewCell.Constants.CellReuseIdentifier, for: indexPath) as! ZoneCollectionViewCell
 
         // Tutorial Section 2.4 (Zones)
 
@@ -67,9 +67,9 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
 
     // MARK: - UICollectionViewDelegate Functions
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Tutorial Section 3.2 (Selected Zone)
-        self.performSegueWithIdentifier(Constants.MomentSegue, sender: nil)
+        self.performSegue(withIdentifier: Constants.MomentSegue, sender: nil)
     }
 
     // MARK: - CoreLocationDataProviderDelegate Functions

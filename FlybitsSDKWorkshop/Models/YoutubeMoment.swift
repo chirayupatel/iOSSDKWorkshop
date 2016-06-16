@@ -17,7 +17,7 @@ public class YoutubeMomentData {
         for (locale, itemDict) in dict {
             print(locale)
             
-            if let videosDict = itemDict.valueForKey("youtubeVideos") as? [NSDictionary] {
+            if let videosDict = itemDict.value(forKey: "youtubeVideos") as? [NSDictionary] {
                 for tempDict in videosDict {
                     
                     if let item = VideoItem(dictionary: tempDict, localizationCode: locale) {
@@ -43,10 +43,10 @@ public class YoutubeMomentData {
             
             let tempDict = dictionary
             self.localizationCode = localizationCode
-            videoUrl = tempDict.valueForKey("videoUrl") as? String
-            embeddedUrl = tempDict.valueForKey("embeddedUrl") as? String
+            videoUrl = tempDict.value(forKey: "videoUrl") as? String
+            embeddedUrl = tempDict.value(forKey: "embeddedUrl") as? String
             
-            if let videoDict = tempDict.valueForKey("video") as? [String:AnyObject] {
+            if let videoDict = tempDict.value(forKey: "video") as? [String:AnyObject] {
                 videoID = videoDict["id"] as? String
                 if let snippet = videoDict["snippet"] as? [String:AnyObject] {
                     channelTitle = snippet["channelTitle"] as? String
@@ -67,9 +67,9 @@ public class YoutubeMomentData {
         var url: String
         
         init(dictionary:NSDictionary) {
-            height = dictionary.numForKey("height")!.integerValue
-            width = dictionary.numForKey("width")!.integerValue
-            url = dictionary.valueForKey("url") as! String
+            height = dictionary.num(forKey: "height")!.intValue
+            width = dictionary.num(forKey: "width")!.intValue
+            url = dictionary.value(forKey: "url") as! String
         }
     }
 }

@@ -15,9 +15,9 @@ public class UsersMomentData : NSObject {
     public var items: [DataItem] = []
     
     init?(dictionary:NSDictionary) {
-        id = (dictionary.valueForKey("id") as! NSNumber).integerValue
-        displayBioOnMainView = (dictionary.valueForKey("id") as! NSNumber).boolValue ?? false
-        if let itemArray = dictionary.valueForKey("users") as? [NSDictionary] {
+        id = (dictionary.value(forKey: "id") as! NSNumber).intValue
+        displayBioOnMainView = (dictionary.value(forKey: "id") as! NSNumber).boolValue ?? false
+        if let itemArray = dictionary.value(forKey: "users") as? [NSDictionary] {
             for item in itemArray {
                 if let item = DataItem(dictionary: item) {
                     items.append(item)
@@ -32,7 +32,7 @@ public class UsersMomentData : NSObject {
         public var backgroundImageUrl: String?
         public var localization: [String:ProfileItem] = [:]
         
-        public func preferredLocalizedItem(locale:String?) -> ProfileItem? {
+        public func preferredLocalizedItem(_ locale:String?) -> ProfileItem? {
             if let locale = locale where localization[locale] != nil {
                 return localization[locale]
             } else if let key = localization.first{
@@ -42,11 +42,11 @@ public class UsersMomentData : NSObject {
         }
         
         init?(dictionary:NSDictionary) {
-            id = (dictionary.valueForKey("id") as! NSNumber).integerValue
-            imageUrl = dictionary.valueForKey("imageUrl") as? String
-            backgroundImageUrl = dictionary.valueForKey("backgroundImageUrl") as? String
+            id = (dictionary.value(forKey: "id") as! NSNumber).intValue
+            imageUrl = dictionary.value(forKey: "imageUrl") as? String
+            backgroundImageUrl = dictionary.value(forKey: "backgroundImageUrl") as? String
             
-            if let locales = dictionary.valueForKey("locales") as? [String:AnyObject] {
+            if let locales = dictionary.value(forKey: "locales") as? [String:AnyObject] {
                 for (key, loc) in locales {
                     if let item = ProfileItem(dictionary: loc as! NSDictionary) {
                         
@@ -80,21 +80,21 @@ public class UsersMomentData : NSObject {
         }
         
         init?(dictionary:NSDictionary) {
-            id = dictionary.valueForKey("id") as! String
-            locale = dictionary.valueForKey("locale") as! String
-            firstName = dictionary.valueForKey("firstName") as? String
-            lastName = dictionary.valueForKey("lastName") as? String
-            position = dictionary.valueForKey("position") as? String
-            branchTransitNumber = dictionary.valueForKey("branchTransitNumber") as? String
-            phoneNumber = dictionary.valueForKey("phoneNumber") as? String
-            email = dictionary.valueForKey("email") as? String
-            aboutMe = dictionary.valueForKey("aboutMe") as? String
-            facebookUrl = dictionary.urlStringForKey("facebookUrl")
-            twitterUrl = dictionary.urlStringForKey("twitterUrl")
-            spotifyUrl = dictionary.urlStringForKey("spotifyUrl")
-            iTunesUrl = dictionary.urlStringForKey("iTunesUrl")
-            googleMusicStoreUrl = dictionary.urlStringForKey("googleMusicStoreUrl")
-            instagramUrl = dictionary.urlStringForKey("instagramUrl")
+            id = dictionary.value(forKey: "id") as! String
+            locale = dictionary.value(forKey: "locale") as! String
+            firstName = dictionary.value(forKey: "firstName") as? String
+            lastName = dictionary.value(forKey: "lastName") as? String
+            position = dictionary.value(forKey: "position") as? String
+            branchTransitNumber = dictionary.value(forKey: "branchTransitNumber") as? String
+            phoneNumber = dictionary.value(forKey: "phoneNumber") as? String
+            email = dictionary.value(forKey: "email") as? String
+            aboutMe = dictionary.value(forKey: "aboutMe") as? String
+            facebookUrl = dictionary.urlString(forKey: "facebookUrl")
+            twitterUrl = dictionary.urlString(forKey: "twitterUrl")
+            spotifyUrl = dictionary.urlString(forKey: "spotifyUrl")
+            iTunesUrl = dictionary.urlString(forKey: "iTunesUrl")
+            googleMusicStoreUrl = dictionary.urlString(forKey: "googleMusicStoreUrl")
+            instagramUrl = dictionary.urlString(forKey: "instagramUrl")
         }
     }
 }

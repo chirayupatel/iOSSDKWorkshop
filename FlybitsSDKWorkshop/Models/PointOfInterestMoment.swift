@@ -34,17 +34,17 @@ class PointOfInterestMomentData {
         
         init?(dictionary: NSDictionary) {
             
-            id = (dictionary.valueForKey("id") as? NSNumber)?.integerValue ?? -1
-            title = dictionary.valueForKey("title") as? String
-            summary = dictionary.valueForKey("description") as? String
-            displayPoint = (dictionary.valueForKey("displayPoint") as? NSNumber)?.boolValue ?? false
-            displayPolygon = (dictionary.valueForKey("displayPolygon") as? NSNumber)?.boolValue ?? false
+            id = (dictionary.value(forKey: "id") as? NSNumber)?.intValue ?? -1
+            title = dictionary.value(forKey: "title") as? String
+            summary = dictionary.value(forKey: "description") as? String
+            displayPoint = (dictionary.value(forKey: "displayPoint") as? NSNumber)?.boolValue ?? false
+            displayPolygon = (dictionary.value(forKey: "displayPolygon") as? NSNumber)?.boolValue ?? false
             
-            if let p = dictionary.valueForKey("point") as? NSDictionary, pp = Point(dictionary: p) {
+            if let p = dictionary.value(forKey: "point") as? NSDictionary, pp = Point(dictionary: p) {
                 point = pp
             }
             
-            if let poly = dictionary.valueForKey("polygon") as? NSDictionary, ppoly = Polygon(dictionary: poly) {
+            if let poly = dictionary.value(forKey: "polygon") as? NSDictionary, ppoly = Polygon(dictionary: poly) {
                 polygon = ppoly
             }
         }
@@ -65,10 +65,10 @@ class PointOfInterestMomentData {
         }
         
         init?(dictionary:NSDictionary) {
-            id = (dictionary.valueForKey("id") as? NSNumber)?.integerValue ?? -1
-            latitude = (dictionary.valueForKey("latitude") as? NSNumber)?.floatValue ?? 128
-            longitude = (dictionary.valueForKey("longitude") as? NSNumber)?.floatValue ?? 256
-            altitude = (dictionary.valueForKey("altitude") as? NSNumber)?.floatValue ?? 0.0
+            id = (dictionary.value(forKey: "id") as? NSNumber)?.intValue ?? -1
+            latitude = (dictionary.value(forKey: "latitude") as? NSNumber)?.floatValue ?? 128
+            longitude = (dictionary.value(forKey: "longitude") as? NSNumber)?.floatValue ?? 256
+            altitude = (dictionary.value(forKey: "altitude") as? NSNumber)?.floatValue ?? 0.0
         }
     }
     
@@ -78,13 +78,13 @@ class PointOfInterestMomentData {
         var id: Int!
         
         init?(dictionary:NSDictionary) {
-            id = (dictionary.valueForKey("id") as? NSNumber)?.integerValue ?? -1
+            id = (dictionary.value(forKey: "id") as? NSNumber)?.intValue ?? -1
             
-            if let centroidDict = dictionary.valueForKey("centroid") as? NSDictionary, c = Point(dictionary: centroidDict) {
+            if let centroidDict = dictionary.value(forKey: "centroid") as? NSDictionary, c = Point(dictionary: centroidDict) {
                 centroid = c
             }
             
-            if let pointsArr = dictionary.valueForKey("points") as? [NSDictionary]{
+            if let pointsArr = dictionary.value(forKey: "points") as? [NSDictionary]{
                 for x in pointsArr {
                     if let c = Point(dictionary: x) {
                         points.append(c)
@@ -99,10 +99,10 @@ class PointOfInterestMomentData {
     init?(dictionary: NSDictionary) {
         if let locales = dictionary as? [String:AnyObject] {
             for (locale, itemDictionary) in locales {
-                if let locations = itemDictionary.valueForKey("locations") as? [NSDictionary] {
+                if let locations = itemDictionary.value(forKey: "locations") as? [NSDictionary] {
                     for x in locations {
                         if let item = LocationData(dictionary: x) {
-                            self.locations[locale.uppercaseString] = item
+                            self.locations[locale.uppercased()] = item
                         }
                     }
                 }

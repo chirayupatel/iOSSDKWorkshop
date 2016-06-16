@@ -22,7 +22,7 @@ class ZoneCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     var isInZone: Bool = false {
         didSet {
-            insideZoneIcon?.backgroundColor = isInZone ? UIColor.greenColor() : UIColor.darkGrayColor()
+            insideZoneIcon?.backgroundColor = isInZone ? UIColor.green() : UIColor.darkGray()
         }
     }
 

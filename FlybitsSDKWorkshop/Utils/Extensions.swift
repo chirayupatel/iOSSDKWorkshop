@@ -9,20 +9,21 @@
 import Foundation
 
 extension NSDictionary {
-    func numForKey(key:String) -> NSNumber? {
-        return self.valueForKey(key) as? NSNumber
+    func num(forKey key: String) -> NSNumber? {
+        return self.value(forKey: key) as? NSNumber
     }
 
-    func dateForKey(key:String) -> NSDate {
-        return NSDate(timeIntervalSince1970: numForKey(key)?.doubleValue ?? 0)
+    func date(forKey key: String) -> Date {
+        return Date(timeIntervalSince1970: num(forKey: key)?.doubleValue ?? 0)
     }
     
-    func urlStringForKey(key:String) -> String? {
-        guard let url = self.valueForKey(key) as? String else { return nil }
+    func urlString(forKey key: String) -> String? {
+        guard let url = self.value(forKey: key) as? String else { return nil }
         
-        let loadableUrl:String
+        let loadableUrl: String
         // if its missing uri scheme, add http as the default otherwise webview doesn't load
-        if url.rangeOfString("(.*)://", options: NSStringCompareOptions.RegularExpressionSearch, range: nil, locale: nil)?.count ?? 0 == 0 {
+        let range = url.range(of: "(.*)://", options: NSString.CompareOptions.regularExpressionSearch, range: nil, locale: nil)
+        if range == nil || range!.isEmpty {
             loadableUrl = "http://" + url
         } else {
             loadableUrl = url

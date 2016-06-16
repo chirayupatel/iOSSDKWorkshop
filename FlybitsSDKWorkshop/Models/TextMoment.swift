@@ -17,9 +17,9 @@ class TextMomentData {
         var summary: String?
         
         init?(dictionary: NSDictionary) {
-            id = (dictionary.valueForKey("id") as? NSNumber)?.integerValue ?? -1
-            summary = dictionary.valueForKey("description") as? String
-            title = dictionary.valueForKey("title") as? String
+            id = (dictionary.value(forKey: "id") as? NSNumber)?.intValue ?? -1
+            summary = dictionary.value(forKey: "description") as? String
+            title = dictionary.value(forKey: "title") as? String
         }
         
     }
@@ -28,9 +28,9 @@ class TextMomentData {
     
     init?(dictionary: NSDictionary) {
         
-        if let textsData = dictionary.valueForKey("texts") as? [[String:AnyObject]] {
+        if let textsData = dictionary.value(forKey: "texts") as? [[String:AnyObject]] {
             for itemDict in textsData {
-                let id = (itemDict["id"] as? NSNumber)?.integerValue ?? -1
+                let id = (itemDict["id"] as? NSNumber)?.intValue ?? -1
                 if let locales = itemDict["locales"] as? [String:AnyObject] {
                     for (lang, data) in locales {
                         if let item = TextData(dictionary: data as! NSDictionary) {
