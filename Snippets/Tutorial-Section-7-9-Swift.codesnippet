@@ -9,7 +9,7 @@
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]) {
+	<string>func zoneEnteredMessage(_ messageInfo: [String: Any]) {
         if let error = messageInfo[PushManager.Constants.PushErrorType] {
             print("Encountered error: \(error)")
             return
