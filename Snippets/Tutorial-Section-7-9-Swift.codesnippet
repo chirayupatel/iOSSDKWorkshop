@@ -18,7 +18,7 @@
             print("No Zone fetched.")
             return
         }
-        guard zone.id == selectedZone.id else {
+        guard zone.identifier == selectedZone.identifier else {
             // This is not the Zone we're looking for
             return
         }
