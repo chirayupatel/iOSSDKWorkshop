@@ -17,6 +17,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK - IBOutlets
     @IBOutlet var zonesCollectionView: UICollectionView!
 
+    var observerTokens = [NSObjectProtocol]()
+
     // Tutorial Section 2.2 (Zones)
 
     // MARK: - View Lifecycle Functions
@@ -46,6 +48,12 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK: - Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Tutorial Section 3.3 (Selected Zone)
+
+        // Cleanup tokens (if any)
+        for token in observerTokens {
+            NSNotificationCenter.defaultCenter().removeObserver(token)
+        }
+        observerTokens.removeAll()
     }
 
     // MARK: - Functions
@@ -75,4 +83,3 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK: - CoreLocationDataProviderDelegate Functions
     // Tutorial Section 8.3 (Context)
 }
-
