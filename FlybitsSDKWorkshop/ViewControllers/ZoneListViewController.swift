@@ -30,30 +30,33 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
 
         // Tutorial Section 7.11 (Push Notifications)
         let zoneModifiedTopic = PushMessage.NotificationType(.Zone, action: .Modified)
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneModifiedTopic, object: nil, queue: nil) { (notification) in
+        let zoneModifiedToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneModifiedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneModifiedToken)
 
         // Tutorial Section 7.12 (Push Notifications)
         let zoneEnteredTopic = PushMessage.NotificationType(.Zone, action: .Entered) // NOTE: This is for .Foreground Push
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
+        let zoneEnteredToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneEnteredToken)
 
         // Tutorial Section 7.13 (Push Notifications)
         let zoneExitedTopic = PushMessage.NotificationType(.Zone, action: .Exited) // NOTE: This is for .Foreground Push
-        let _ = NSNotificationCenter.defaultCenter().addObserverForName(zoneExitedTopic, object: nil, queue: nil) { (notification) in
+        let zoneExitedToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneExitedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneExitedToken)
 
         // Tutorial Section 7.14 (Push Notifications)
         let _ = NSNotificationCenter.defaultCenter().addObserverForName(PushManager.Constants.PushErrorTopic, object: nil, queue: nil) { (notification) in
@@ -63,6 +66,15 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             }
             print("Encountered Push Error: \(error)")
         }
+
+        let zoneEnteredAPNSTopic = PushMessage.NotificationType(.MomentInstance, action: .ZoneEntered)
+        let zoneEnteredAPNSToken = NSNotificationCenter.defaultCenter().addObserverForName(zoneEnteredAPNSTopic, object: nil, queue: nil) { (notification) in
+            guard let userInfo = notification.userInfo else {
+                return
+            }
+            self.updateZoneInfo(userInfo)
+        }
+        observerTokens.append(zoneEnteredAPNSToken)
 
         // Tutorial Section 2.1 (Zones)
         let query = ZonesQuery()
