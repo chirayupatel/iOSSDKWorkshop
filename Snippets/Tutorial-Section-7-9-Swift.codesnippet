@@ -9,8 +9,20 @@
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]?) {
-        // TODO: (TL) Handle messageInfo stuffs
+	<string>func zoneEnteredMessage(messageInfo: [NSObject: AnyObject]) {
+        if let error = messageInfo[PushManager.Constants.PushErrorType] {
+            print("Encountered error: \(error)")
+            return
+        }
+        guard let zone = messageInfo[PushManager.Constants.PushFetchedContent] as? Zone else {
+            print("No Zone fetched.")
+            return
+        }
+        guard zone.identifier == selectedZone.identifier else {
+            // This is not the Zone we're looking for
+            return
+        }
+        print("Entered Zone!")
     }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>F582E81F-2ABC-4643-ACFF-1BC96E29136A</string>
