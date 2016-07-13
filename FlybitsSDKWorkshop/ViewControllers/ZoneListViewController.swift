@@ -18,6 +18,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK - IBOutlets
     @IBOutlet var zonesCollectionView: UICollectionView!
 
+    var observerTokens = [NSObjectProtocol]()
+
     // Tutorial Section 2.2 (Zones)
     var zones: [Zone]?
 
@@ -104,6 +106,12 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             let zoneViewController = segue.destinationViewController as! ZoneViewController
             zoneViewController.selectedZone = zone
         }
+
+        // Cleanup tokens (if any)
+        for token in observerTokens {
+            NSNotificationCenter.defaultCenter().removeObserver(token)
+        }
+        observerTokens.removeAll()
     }
 
     // MARK: - Functions
@@ -115,9 +123,9 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
      "com.flybits.push.source"         : PushSource  // APNS or MQTT
      "com.flybits.push.sourceContent"  : APS Content // This is an optional entry that will contain the APS content of an APNS push message
      "com.flybits.push.fetchedContent" : A Flybits model object // i.e. a Zone or Moment
-     
+
      -- OR --
-     
+
      "com.flybits.push.error.type" : <Error Code>
      ]
      */
@@ -134,10 +142,10 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // We don't have this Zone right now
             return
         }
-        
+
         // Update the Zone and refresh the UI
         zones?[index] = zone
-        
+
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
         dispatch_async(dispatch_get_main_queue()) {
             self.zonesCollectionView.reloadItemsAtIndexPaths([indexPath])
@@ -187,4 +195,3 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         print("Location Updated: \(locations)")
     }
 }
-
