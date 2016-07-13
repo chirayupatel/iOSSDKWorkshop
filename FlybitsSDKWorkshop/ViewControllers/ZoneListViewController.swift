@@ -18,6 +18,8 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK - IBOutlets
     @IBOutlet var zonesCollectionView: UICollectionView!
 
+    var observerTokens = [NSObjectProtocol]()
+
     // Tutorial Section 2.2 (Zones)
     var zones: [Zone]?
 
@@ -27,34 +29,37 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Do any additional setup after loading the view, typically from a nib.
 
         // Tutorial Section 7.11 (Push Notifications)
-        let zoneModifiedTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .modified))
-        let _ = NotificationCenter.default().addObserver(forName: zoneModifiedTopic, object: nil, queue: nil) { (notification) in
+        let zoneModifiedTopic = PushMessage.NotificationType(.zone, action: .modified)
+        let zoneModifiedToken = NotificationCenter.default().addObserver(forName: zoneModifiedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneModifiedToken)
 
         // Tutorial Section 7.12 (Push Notifications)
-        let zoneEnteredTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .entered)) // NOTE: This is for .Foreground Push
-        let _ = NotificationCenter.default().addObserver(forName: zoneEnteredTopic, object: nil, queue: nil) { (notification) in
+        let zoneEnteredTopic = PushMessage.NotificationType(.zone, action: .entered) // NOTE: This is for .Foreground Push
+        let zoneEnteredToken = NotificationCenter.default().addObserver(forName: zoneEnteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneEnteredToken)
 
         // Tutorial Section 7.13 (Push Notifications)
-        let zoneExitedTopic = NSNotification.Name(rawValue: PushMessage.NotificationType(.zone, action: .exited)) // NOTE: This is for .Foreground Push
-        let _ = NotificationCenter.default().addObserver(forName: zoneExitedTopic, object: nil, queue: nil) { (notification) in
+        let zoneExitedTopic = PushMessage.NotificationType(.zone, action: .exited) // NOTE: This is for .Foreground Push
+        let zoneExitedToken = NotificationCenter.default().addObserver(forName: zoneExitedTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return
             }
             self.updateZoneInfo(userInfo)
         }
+        observerTokens.append(zoneExitedToken)
 
         // Tutorial Section 7.14 (Push Notifications)
-        let _ = NotificationCenter.default().addObserver(forName: NSNotification.Name(rawValue: PushManager.Constants.PushErrorTopic), object: nil, queue: nil) { (notification) in
+        let _ = NotificationCenter.default().addObserver(forName: PushManager.Constants.PushErrorTopic, object: nil, queue: nil) { (notification) in
             print(PushManager.Constants.PushErrorTopic)
             guard let error = notification.userInfo?[PushManager.Constants.PushErrorData] else {
                 return // Unsure how to detect error
@@ -62,9 +67,18 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             print("Encountered Push Error: \(error)")
         }
 
+        let zoneEnteredAPNSTopic = PushMessage.NotificationType(.momentInstance, action: .zoneEntered)
+        let zoneEnteredAPNSToken = NotificationCenter.default().addObserver(forName: zoneEnteredAPNSTopic, object: nil, queue: nil) { (notification) in
+            guard let userInfo = notification.userInfo else {
+                return
+            }
+            self.updateZoneInfo(userInfo)
+        }
+        observerTokens.append(zoneEnteredAPNSToken)
+
         // Tutorial Section 2.1 (Zones)
         let query = ZonesQuery()
-        _ = ZoneRequest.Query(query) { (zones, pagination, error) -> Void in
+        _ = ZoneRequest.query(query) { (zones, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error: \(error!)")
                 return
@@ -73,7 +87,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // Tutorial Section 7.10 (Push Notifications)
             zones.forEach {
                 $0.subscribeToPush()
-                _ = ZoneRequest.favourite(zoneID: $0.id, favourite: true) { (zoneID, success, error) in
+                _ = ZoneRequest.favourite(identifier: $0.identifier, favourite: true) { (zoneID, success, error) in
                     guard success else {
                         print("Unable to favourite Zone: \(zoneID)")
                         return
@@ -86,7 +100,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         }.execute()
 
         // Tutorial Section 8.2 (Context)
-        if let locationDataProvider = ContextManager.sharedManager.retrieveContextProvider(.coreLocation) as? CoreLocationDataProvider {
+        if let locationDataProvider = ContextManager.sharedManager.retrieve(.coreLocation) as? CoreLocationDataProvider {
             _ = locationDataProvider.addDelegate(self)
         }
     }
@@ -104,6 +118,12 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             let zoneViewController = segue.destinationViewController as! ZoneViewController
             zoneViewController.selectedZone = zone
         }
+
+        // Cleanup tokens (if any)
+        for token in observerTokens {
+            NotificationCenter.default().removeObserver(token)
+        }
+        observerTokens.removeAll()
     }
 
     // MARK: - Functions
@@ -115,9 +135,9 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
      "com.flybits.push.source"         : PushSource  // APNS or MQTT
      "com.flybits.push.sourceContent"  : APS Content // This is an optional entry that will contain the APS content of an APNS push message
      "com.flybits.push.fetchedContent" : A Flybits model object // i.e. a Zone or Moment
-     
+
      -- OR --
-     
+
      "com.flybits.push.error.type" : <Error Code>
      ]
      */
@@ -134,7 +154,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
             // We don't have this Zone right now
             return
         }
-        
+
         // Update the Zone and refresh the UI
         zones?[index] = zone
 
@@ -160,7 +180,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
 
             cell.zoneNameLabel.text = zone.name.value
             cell.zoneDescriptionLabel.text = zone.zoneDescription.value
-            _ = zone.image.loadImage(._100, locale: nil) { (image, error) -> Void in
+            _ = zone.image.loadImage(forSize: ._100) { (image, error) -> Void in
                 guard error == nil else {
                     print("Encountered image loading error: \(error!)")
                     return
@@ -187,4 +207,3 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
         print("Location Updated: \(locations)")
     }
 }
-

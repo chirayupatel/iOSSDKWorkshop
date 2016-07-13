@@ -41,7 +41,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Do any additional setup after loading the view, typically from a nib.
 
         // Tutorial Section 7.7 (Push Notifications)
-        let enteredTopic = NSNotification.Name(rawValue: PushMessage.CompleteNotificationType(selectedZone, action: .entered))
+        let enteredTopic = PushMessage.CompleteNotificationType(selectedZone, action: .entered)
         let enteredToken = NotificationCenter.default().addObserver(forName: enteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return // No data!
@@ -51,7 +51,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         tokens.append(enteredToken)
 
         // Tutorial Section 7.8 (Push Notifications)
-        let zoneEnteredTopic = NSNotification.Name(rawValue: PushMessage.CompleteNotificationType(.momentInstance, action: .zoneEntered, rawAction: selectedZone.id))
+        let zoneEnteredTopic = PushMessage.CompleteNotificationType(.momentInstance, action: .zoneEntered, rawAction: selectedZone.identifier)
         let zoneEnteredToken = NotificationCenter.default().addObserver(forName: zoneEnteredTopic, object: nil, queue: nil) { (notification) in
             guard let userInfo = notification.userInfo else {
                 return // No data!
@@ -65,7 +65,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.title = selectedZone.name.value ?? Constants.DefaultTitle
             self.zoneImageView.image = selectedZone.image.loadedImage()
             
-            _ = MomentRequest.getZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -> Void in
+            _ = MomentRequest.getZoneMoments(zoneID: selectedZone.identifier) { (moments, pagination, error) -> Void in
                 guard error == nil else {
                     print("Encountered error: \(error!)")
                     return
@@ -78,25 +78,25 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
 
         // Tutorial Section 5.1 (Zone Connect / Disconnect - Analytics)
-        let query = DeviceQuery(type: DeviceQuery.EntityType.zone, id: selectedZone.id)
+        let query = DeviceQuery(type: .zone, identifier: selectedZone.identifier)
         _ = DeviceRequest.connect(query) { (error) -> Void in
             // Check for success
             guard error == nil else {
-                print("Encountered error connecting to Zone: \(self.selectedZone.id)")
+                print("Encountered error connecting to Zone: \(self.selectedZone.identifier)")
                 return
             }
             
             _ = DeviceRequest.disconnect(query) { (error) -> Void in
                 // Check for success
                 guard error == nil else {
-                    print("Encountered error connecting to Zone: \(self.selectedZone.id)")
+                    print("Encountered error connecting to Zone: \(self.selectedZone.identifier)")
                     return
                 }
             }.execute()
         }.execute()
 
         // Tutorial Section 6.1 (Tags)
-        _ = TagsRequest.Query(TagQuery()) { (tags: [VisibleTag]?, pagination, error) -> Void in
+        _ = TagsRequest.query(TagQuery()) { (tags: [VisibleTag]?, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error retrieving tags: \(error!)")
                 return
@@ -139,12 +139,12 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
     // Tutorial Section 6.4 (Tags)
     func doMomentQuery() {
         let momentQuery = MomentQuery()
-        momentQuery.zoneIDs = [selectedZone.id]
+        momentQuery.zoneIDs = [selectedZone.identifier]
         if let selectedTagFilter = selectedTagFilter {
             momentQuery.momentIDs = selectedTagFilter
         }
         // Was: MomentRequest.GetZoneMoments(zoneID: selectedZone.id) { (moments, pagination, error) -> Void in
-        _ = MomentRequest.Query(momentQuery) { (moments, pagination, error) -> Void in
+        _ = MomentRequest.query(momentQuery) { (moments, pagination, error) -> Void in
             guard error == nil else {
                 print("Encountered error: \(error!)")
                 return
@@ -164,7 +164,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
             print("No Zone fetched.")
             return
         }
-        guard zone.id == selectedZone.id else {
+        guard zone.identifier == selectedZone.identifier else {
             // This is not the Zone we're looking for
             return
         }
@@ -191,7 +191,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
 
         // Tutorial Section 3.7 (Selected Zone)
         if let moment = moments?[indexPath.item!] {
-            _ = moment.image?.loadImage(._100, locale: nil) { (image, error) -> Void in
+            _ = moment.image?.loadImage(forSize: ._100) { (image, error) -> Void in
                 guard error == nil else {
                     print("Encountered image loading error: \(error!)")
                     return
@@ -225,7 +225,7 @@ class ZoneViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         for tag in tags {
-            alertController.addAction(UIAlertAction(title: tag.value?.defaultValue ?? "Tag \(tag.id)", style: .default) { (action) -> Void in
+            alertController.addAction(UIAlertAction(title: tag.value?.defaultValue ?? "Tag \(tag.identifier)", style: .default) { (action) -> Void in
                 self.selectedTagFilter = tag.zoneMomentInstanceIDs
                 self.doMomentQuery()
             })

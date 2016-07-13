@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text ?? ""
 
         // Tutorial Section 1.1 (Login / Logout)
-        _ = SessionRequest.login(email: email, password: password, rememberMe: false) { (user, error) -> Void in
+        _ = SessionRequest.login(email: email, password: password, rememberMe: false, fetchJWT: true) { (user, error) -> Void in
             guard error == nil else {
                 self.errorLabel.text = "Login Error"
                 self.animateLogo = false

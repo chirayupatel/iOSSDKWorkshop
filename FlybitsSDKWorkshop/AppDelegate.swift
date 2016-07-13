@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // Tutorial Section 0.0 (API Key)
-        Session.sharedInstance.configuration.APIKey = "<#API Key#>"
+        Session.sharedInstance.configuration.apiKey = "<#API Key#>"
         
         print("Server: \(Session.sharedInstance.configuration.serverURL)")
         
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Tutorial Section 7.5 (Push Notifications)
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        let handled = PushManager.sharedManager.notificationReceived(userInfo) { (result) in
+        let handled = PushManager.sharedManager.received(userInfo) { (result) in
             completionHandler(result)
         }
         if !handled {
