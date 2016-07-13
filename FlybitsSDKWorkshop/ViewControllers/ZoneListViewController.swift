@@ -51,7 +51,7 @@ class ZoneListViewController: UIViewController, UICollectionViewDataSource, UICo
 
         // Cleanup tokens (if any)
         for token in observerTokens {
-            NSNotificationCenter.defaultCenter().removeObserver(token)
+            NotificationCenter.default().removeObserver(token)
         }
         observerTokens.removeAll()
     }
